@@ -1,0 +1,737 @@
+/* ==========================================================================
+   CASA MORAIRA — Hoja de estilos principal
+   Estructura: 1) Tokens  2) Reset  3) Tipografía  4) Layout general
+   5) Header  6) Hero  7) Presentación  8) Habitaciones  9) Alberca
+   10) Cocina  11) Experiencia  12) Reservas  13) Ubicación  14) Footer
+   15) Utilidades / animaciones  16) Responsive
+   ========================================================================== */
+
+/* ---------- 1) TOKENS ---------- */
+:root {
+  /* Paleta */
+  --blanco-calido: #F9F7F2;
+  --beige-arena: #E8D8C3;
+  --terracota: #D96B3B;
+  --verde-oliva: #7A8061;
+  --marron-madera: #795548;
+  --carbon: #292622;
+
+  /* Variaciones de apoyo (derivadas, no nuevos colores dominantes) */
+  --beige-arena-suave: #F1E6D6;
+  --carbon-suave: rgba(41, 38, 34, 0.65);
+  --linea: rgba(41, 38, 34, 0.12);
+  --oliva-linea: rgba(122, 128, 97, 0.35);
+
+  /* Tipografía */
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-body: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Espaciado */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.75rem;
+  --space-4: 3rem;
+  --space-5: 5rem;
+  --space-6: 8rem;
+
+  /* Layout */
+  --max-width: 1240px;
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+
+  /* Transición estándar, suave y única */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: 0.5s var(--ease);
+}
+
+/* ---------- 2) RESET ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--blanco-calido);
+  color: var(--carbon);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; margin: 0; padding: 0; }
+button { font-family: inherit; cursor: pointer; }
+input, select { font-family: inherit; }
+
+/* Accesibilidad: foco visible siempre */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--terracota);
+  outline-offset: 3px;
+}
+
+/* Respeta la preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- 3) TIPOGRAFÍA ---------- */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: var(--carbon);
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+h1 { font-size: clamp(2.75rem, 6vw, 5rem); line-height: 1.05; }
+h2 { font-size: clamp(2.1rem, 4vw, 3.1rem); line-height: 1.15; }
+h3 { font-size: clamp(1.5rem, 2.4vw, 1.9rem); line-height: 1.25; }
+
+p { margin: 0 0 var(--space-2); max-width: 60ch; }
+.lead {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-style: italic;
+  color: var(--marron-madera);
+  max-width: 42ch;
+}
+
+.kicker {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  color: var(--verde-oliva);
+  font-weight: 700;
+  text-transform: none; /* evitamos mayúsculas sostenidas como recurso genérico */
+}
+
+/* ---------- 4) LAYOUT GENERAL ---------- */
+.wrap {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+section { padding-block: var(--space-6); position: relative; }
+.section-head {
+  max-width: 640px;
+  margin-bottom: var(--space-5);
+}
+.divider {
+  width: 64px;
+  height: 2px;
+  background: var(--terracota);
+  border: none;
+  margin: var(--space-2) 0 var(--space-3);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.9rem;
+  border-radius: 2px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  border: 1px solid transparent;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+.btn-primary {
+  background: var(--terracota);
+  color: var(--blanco-calido);
+}
+.btn-primary:hover { background: #c25a2d; }
+.btn-outline {
+  background: transparent;
+  border-color: var(--carbon);
+  color: var(--carbon);
+}
+.btn-outline:hover { border-color: var(--terracota); color: var(--terracota); }
+.btn-ghost-light {
+  background: transparent;
+  border-color: rgba(249,247,242,0.7);
+  color: var(--blanco-calido);
+}
+.btn-ghost-light:hover { background: rgba(249,247,242,0.12); }
+
+/* ---------- 5) HEADER ---------- */
+.site-header {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 100;
+  padding-block: var(--space-2);
+  background: transparent;
+  transition: background var(--transition), padding var(--transition), box-shadow var(--transition);
+}
+.site-header.is-scrolled {
+  background: rgba(249, 247, 242, 0.94);
+  backdrop-filter: blur(6px);
+  padding-block: 0.7rem;
+  box-shadow: 0 1px 0 var(--linea);
+}
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  letter-spacing: 0.08em;
+  color: var(--blanco-calido);
+  transition: color var(--transition);
+}
+.site-header.is-scrolled .logo { color: var(--carbon); }
+
+.main-nav { display: flex; align-items: center; gap: var(--space-4); }
+.main-nav ul { display: flex; gap: var(--space-3); }
+.main-nav a {
+  font-size: 0.92rem;
+  color: var(--blanco-calido);
+  position: relative;
+  padding-bottom: 4px;
+  transition: color var(--transition);
+}
+.site-header.is-scrolled .main-nav a { color: var(--carbon); }
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: 0;
+  height: 1px;
+  background: var(--terracota);
+  transition: right var(--transition);
+}
+.main-nav a:hover::after { right: 0; }
+.nav-cta {
+  color: var(--terracota) !important;
+  border: 1px solid currentColor;
+  padding: 0.5rem 1.1rem;
+}
+.nav-cta::after { display: none; }
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 8px;
+}
+.menu-toggle span {
+  width: 24px; height: 2px;
+  background: var(--blanco-calido);
+  transition: background var(--transition), transform var(--transition), opacity var(--transition);
+}
+.site-header.is-scrolled .menu-toggle span { background: var(--carbon); }
+.menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---------- 6) HERO ---------- */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: var(--space-6);
+  position: relative;
+  background: linear-gradient(180deg, rgba(41,38,34,0.35) 0%, rgba(41,38,34,0.15) 40%, rgba(41,38,34,0.55) 100%),
+              url('../assets/img/hero-villa.jpg') center/cover no-repeat;
+  isolation: isolate;
+}
+.hero .wrap { width: 100%; }
+.hero-content {
+  color: var(--blanco-calido);
+  max-width: 620px;
+}
+.hero-eyebrow {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  color: var(--beige-arena);
+  margin-bottom: var(--space-1);
+}
+.hero-content h1 {
+  color: var(--blanco-calido);
+  letter-spacing: 0.06em;
+}
+.hero-content .lead { color: var(--beige-arena-suave); margin-top: var(--space-2); }
+.hero-actions { margin-top: var(--space-3); }
+.scroll-hint {
+  position: absolute;
+  right: var(--gutter);
+  bottom: var(--space-3);
+  color: var(--blanco-calido);
+  writing-mode: vertical-rl;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  opacity: 0.85;
+}
+.scroll-hint::after {
+  content: "";
+  width: 1px; height: 44px;
+  background: currentColor;
+}
+
+/* ---------- 7) PRESENTACIÓN ---------- */
+.intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  align-items: center;
+}
+.intro-media {
+  position: relative;
+}
+.intro-media img {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+}
+.intro-media::before {
+  content: "";
+  position: absolute;
+  top: -18px; left: -18px;
+  width: 60%; height: 60%;
+  border: 1px solid var(--terracota);
+  z-index: -1;
+}
+.intro-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--linea);
+}
+.intro-feature .num { font-family: var(--font-display); font-size: 1.9rem; color: var(--terracota); }
+.intro-feature p { margin: 0; font-size: 0.95rem; color: var(--carbon-suave); }
+
+/* ---------- 8) HABITACIONES ---------- */
+.rooms-list { display: flex; flex-direction: column; }
+.room-row {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-5);
+  align-items: center;
+  padding-block: var(--space-5);
+  border-bottom: 1px solid var(--linea);
+}
+.room-row:nth-child(even) { grid-template-columns: 0.9fr 1.1fr; }
+.room-row:nth-child(even) .room-media { order: 2; }
+.room-row:nth-child(even) .room-copy { order: 1; }
+
+.room-media { position: relative; overflow: hidden; }
+.room-media img {
+  width: 100%;
+  aspect-ratio: 5/4;
+  object-fit: cover;
+  transition: transform 0.9s var(--ease);
+}
+.room-row:hover .room-media img { transform: scale(1.035); }
+.room-name-tag {
+  position: absolute;
+  bottom: var(--space-2);
+  left: var(--space-2);
+  background: var(--blanco-calido);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  color: var(--carbon);
+}
+.room-copy .room-meta {
+  display: flex;
+  gap: var(--space-3);
+  margin: var(--space-2) 0 var(--space-3);
+  font-size: 0.88rem;
+  color: var(--verde-oliva);
+}
+.room-copy .room-meta span { display: inline-flex; align-items: center; gap: 0.4rem; }
+.room-copy p { color: var(--carbon-suave); }
+.room-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.2rem;
+  margin-bottom: var(--space-3);
+}
+.room-features li {
+  font-size: 0.85rem;
+  color: var(--carbon-suave);
+  position: relative;
+  padding-left: 1rem;
+}
+.room-features li::before {
+  content: "";
+  position: absolute; left: 0; top: 0.55em;
+  width: 5px; height: 5px;
+  background: var(--terracota);
+  border-radius: 50%;
+}
+
+/* ---------- 9) ALBERCA (full-bleed) ---------- */
+.full-bleed {
+  min-height: 78vh;
+  display: flex;
+  align-items: center;
+  color: var(--blanco-calido);
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+.full-bleed::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: rgba(41,38,34,0.32);
+}
+.full-bleed .wrap { position: relative; z-index: 1; }
+.full-bleed.pool { background-image: url('../assets/img/pool.jpg'); }
+.full-bleed-content { max-width: 560px; }
+.full-bleed-content .lead { color: var(--beige-arena-suave); }
+.full-bleed h2 { color: var(--blanco-calido); }
+
+@media (max-width: 700px) {
+  .full-bleed { background-attachment: scroll; }
+}
+
+/* ---------- 10) COCINA ---------- */
+.kitchen {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: var(--space-4);
+  align-items: center;
+}
+.kitchen-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+.kitchen-gallery img:first-child { grid-row: span 2; aspect-ratio: 3/4; object-fit: cover; }
+.kitchen-gallery img:nth-child(2),
+.kitchen-gallery img:nth-child(3) { aspect-ratio: 4/3; object-fit: cover; }
+.kitchen-copy p { color: var(--carbon-suave); }
+
+/* ---------- 11) EXPERIENCIA ---------- */
+.experience-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-2);
+}
+.experience-strip figure { margin: 0; }
+.experience-strip img { aspect-ratio: 1/1.1; object-fit: cover; filter: saturate(0.95); }
+.experience-strip figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--carbon-suave);
+  font-style: italic;
+  font-family: var(--font-display);
+}
+.experience-copy { max-width: 680px; margin-top: var(--space-4); }
+.experience-copy p { color: var(--carbon-suave); }
+
+/* ---------- 12) RESERVAS ---------- */
+.booking {
+  background: var(--beige-arena-suave);
+}
+.booking-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) auto;
+  gap: var(--space-2);
+  align-items: end;
+  background: var(--blanco-calido);
+  padding: var(--space-3);
+  border: 1px solid var(--linea);
+}
+.field { display: flex; flex-direction: column; gap: 0.4rem; }
+.field label { font-size: 0.8rem; color: var(--verde-oliva); }
+.field input, .field select {
+  border: 1px solid var(--linea);
+  background: var(--blanco-calido);
+  padding: 0.75rem 0.85rem;
+  font-size: 0.95rem;
+  color: var(--carbon);
+}
+.field input:focus, .field select:focus { border-color: var(--terracota); }
+.booking-form .btn { white-space: nowrap; height: fit-content; }
+
+.booking-results {
+  margin-top: var(--space-4);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-2);
+}
+.booking-results[hidden] { display: none; }
+.result-card {
+  background: var(--blanco-calido);
+  border: 1px solid var(--linea);
+  padding: var(--space-2) var(--space-3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+}
+.result-card h4 { font-size: 1.15rem; }
+.result-card .price { color: var(--terracota); font-family: var(--font-display); font-size: 1.3rem; }
+.booking-note {
+  margin-top: var(--space-2);
+  font-size: 0.85rem;
+  color: var(--carbon-suave);
+}
+
+/* ---------- 13) UBICACIÓN ---------- */
+.location {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+.location-map {
+  background: var(--beige-arena);
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--marron-madera);
+  font-size: 0.9rem;
+  border: 1px dashed var(--oliva-linea);
+  text-align: center;
+  padding: var(--space-2);
+}
+.location-list { display: flex; flex-direction: column; gap: var(--space-3); }
+.location-item { display: flex; gap: var(--space-2); }
+.location-item .dist {
+  font-family: var(--font-display);
+  color: var(--terracota);
+  font-size: 1.4rem;
+  min-width: 3.5rem;
+}
+.location-item p { margin: 0; color: var(--carbon-suave); font-size: 0.95rem; }
+
+/* ---------- 14) FOOTER ---------- */
+.site-footer {
+  background: var(--carbon);
+  color: var(--beige-arena-suave);
+  padding-block: var(--space-5) var(--space-3);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid rgba(249,247,242,0.12);
+}
+.footer-logo { font-family: var(--font-display); font-size: 1.6rem; color: var(--blanco-calido); }
+.footer-tag { margin-top: var(--space-2); font-size: 0.9rem; color: rgba(249,247,242,0.65); max-width: 30ch; }
+.footer-col h4 { font-family: var(--font-body); font-size: 0.85rem; letter-spacing: 0.06em; color: var(--beige-arena); margin-bottom: var(--space-2); }
+.footer-col ul { display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-col a { font-size: 0.9rem; color: rgba(249,247,242,0.75); transition: color var(--transition); }
+.footer-col a:hover { color: var(--terracota); }
+.footer-bottom {
+  padding-top: var(--space-3);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: rgba(249,247,242,0.5);
+}
+
+/* ---------- 15) UTILIDADES / ANIMACIONES ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--carbon);
+  color: var(--blanco-calido);
+  padding: 0.8rem 1.2rem;
+  z-index: 1000;
+}
+.skip-link:focus { left: var(--space-2); top: var(--space-2); }
+
+/* ---------- 15b) PÁGINA DE DETALLE DE HABITACIÓN ---------- */
+.room-hero {
+  padding-top: calc(var(--space-6) + 3rem);
+  padding-bottom: var(--space-4);
+  background: var(--beige-arena-suave);
+}
+.room-hero .breadcrumb {
+  font-size: 0.85rem;
+  color: var(--verde-oliva);
+  margin-bottom: var(--space-2);
+}
+.room-hero .breadcrumb a { text-decoration: underline; text-underline-offset: 3px; }
+
+.room-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+.room-gallery img { width: 100%; height: 100%; object-fit: cover; }
+.room-gallery a:first-child { grid-column: span 3; }
+.room-gallery a:first-child img { aspect-ratio: 21/9; }
+.room-gallery a:not(:first-child) img { aspect-ratio: 4/3; }
+.room-gallery a { display: block; overflow: hidden; }
+.room-gallery img { transition: transform 0.6s var(--ease); }
+.room-gallery a:hover img { transform: scale(1.04); }
+
+@media (max-width: 700px) {
+  .room-gallery { grid-template-columns: repeat(2, 1fr); }
+  .room-gallery a:first-child { grid-column: span 2; }
+  .room-gallery a:first-child img { aspect-ratio: 4/3; }
+}
+
+.room-detail-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: var(--space-5);
+  align-items: start;
+}
+.room-detail-info dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.6rem 1.5rem;
+  margin: var(--space-3) 0;
+}
+.room-detail-info dt { color: var(--verde-oliva); font-size: 0.85rem; }
+.room-detail-info dd { margin: 0; font-size: 0.95rem; }
+.room-services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.4rem;
+  margin: var(--space-2) 0 var(--space-3);
+}
+.room-services li {
+  font-size: 0.9rem;
+  position: relative;
+  padding-left: 1rem;
+}
+.room-services li::before {
+  content: "";
+  position: absolute; left: 0; top: 0.55em;
+  width: 5px; height: 5px;
+  background: var(--terracota);
+  border-radius: 50%;
+}
+
+.booking-widget {
+  position: sticky;
+  top: 110px;
+  background: var(--blanco-calido);
+  border: 1px solid var(--linea);
+  padding: var(--space-3);
+}
+.booking-widget .price-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--linea);
+}
+.booking-widget .price-line .price {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  color: var(--terracota);
+}
+.booking-widget .price-line .price small { font-size: 0.85rem; color: var(--carbon-suave); font-family: var(--font-body); }
+.booking-widget .availability {
+  margin-top: var(--space-2);
+  font-size: 0.85rem;
+  color: var(--verde-oliva);
+}
+.other-rooms {
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--linea);
+  margin-top: var(--space-6);
+}
+.other-rooms-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-2);
+}
+.other-room-card { display: block; }
+.other-room-card img { aspect-ratio: 4/3; object-fit: cover; margin-bottom: 0.6rem; }
+.other-room-card span { font-family: var(--font-display); font-size: 1.15rem; }
+
+@media (max-width: 980px) {
+  .room-detail-grid { grid-template-columns: 1fr; }
+  .booking-widget { position: static; }
+  .room-gallery { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .room-gallery a:first-child { grid-row: span 1; grid-column: span 2; }
+  .other-rooms-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---------- 16) RESPONSIVE ---------- */
+@media (max-width: 980px) {
+  .intro, .kitchen, .location { grid-template-columns: 1fr; }
+  .kitchen-gallery { order: -1; }
+  .room-row, .room-row:nth-child(even) {
+    grid-template-columns: 1fr;
+  }
+  .room-row:nth-child(even) .room-media,
+  .room-row:nth-child(even) .room-copy { order: initial; }
+  .experience-strip { grid-template-columns: repeat(2, 1fr); }
+  .booking-form { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+}
+
+@media (max-width: 760px) {
+  .main-nav ul, .main-nav { display: none; }
+  .menu-toggle { display: flex; }
+  .site-header .wrap { position: relative; }
+
+  .main-nav.is-open {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    top: 0;
+    background: var(--blanco-calido);
+    flex-direction: column;
+    padding: 6rem var(--gutter) var(--space-4);
+  }
+  .main-nav.is-open ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .main-nav.is-open a { color: var(--carbon); font-size: 1.4rem; font-family: var(--font-display); }
+  .main-nav.is-open .nav-cta { align-self: flex-start; }
+
+  section { padding-block: var(--space-5); }
+  .experience-strip { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: var(--space-3); }
+  .location-map { aspect-ratio: 16/10; }
+}
+
+@media (max-width: 520px) {
+  .booking-form { grid-template-columns: 1fr; }
+  .booking-form .btn { width: 100%; justify-content: center; }
+}
