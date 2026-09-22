@@ -243,11 +243,41 @@ section { padding-block: var(--space-6); position: relative; }
   align-items: flex-end;
   padding-bottom: var(--space-6);
   position: relative;
-  background: linear-gradient(180deg, rgba(41,38,34,0.35) 0%, rgba(41,38,34,0.15) 40%, rgba(41,38,34,0.55) 100%),
-              url('../assets/img/hero-villa.jpg') center/cover no-repeat;
+  /* Eliminamos el archivo .mp4 de aquí para que no rompa el diseño */
+  background: transparent; 
   isolation: isolate;
+  overflow: hidden; /* Evita que el video sobresalga del contenedor */
 }
-.hero .wrap { width: 100%; }
+
+/* NUEVO: Fija el video al fondo ocupando todo el espacio */
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Simula el efecto 'background-size: cover' */
+  z-index: -2; /* Lo manda al fondo por detrás de todo */
+}
+
+/* NUEVO: Mantiene tu gradiente oscuro original encima del video */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(41,38,34,0.35) 0%, rgba(41,38,34,0.15) 40%, rgba(41,38,34,0.55) 100%);
+  z-index: -1; /* Queda sobre el video pero debajo de los textos */
+}
+
+/* MODIFICADO: Asegura que el contenedor de texto mantenga su eje z */
+.hero .wrap { 
+  width: 100%; 
+  position: relative;
+  z-index: 1;
+}
+
 .hero-content {
   color: var(--blanco-calido);
   max-width: 620px;
@@ -265,6 +295,8 @@ section { padding-block: var(--space-6); position: relative; }
 }
 .hero-content .lead { color: var(--beige-arena-suave); margin-top: var(--space-2); }
 .hero-actions { margin-top: var(--space-3); }
+
+/* MODIFICADO: Añadido z-index para que no quede oculto bajo el video */
 .scroll-hint {
   position: absolute;
   right: var(--gutter);
@@ -277,6 +309,7 @@ section { padding-block: var(--space-6); position: relative; }
   align-items: center;
   gap: 0.6rem;
   opacity: 0.85;
+  z-index: 1; 
 }
 .scroll-hint::after {
   content: "";
