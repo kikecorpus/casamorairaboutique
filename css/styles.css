@@ -419,25 +419,42 @@ section { padding-block: var(--space-6); position: relative; }
   display: flex;
   align-items: center;
   color: var(--blanco-calido);
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
   position: relative;
+  overflow: hidden; /* Evita que el video sobresalga del contenedor */
 }
+
+/* Estilos para el video de fondo */
+.bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Capa de contraste oscura por encima del video */
 .full-bleed::before {
   content: "";
-  position: absolute; inset: 0;
-  background: rgba(41,38,34,0.32);
+  position: absolute; 
+  inset: 0;
+  background: rgba(41, 38, 34, 0.32);
+  z-index: 1; /* Por encima del video, por debajo del contenido */
 }
-.full-bleed .wrap { position: relative; z-index: 1; }
-.full-bleed.pool { background-image: url('../assets/img/pool.jpg'); }
+
+/* Contenido por encima de la capa oscura */
+.full-bleed .wrap { 
+  position: relative; 
+  z-index: 2; 
+}
+
 .full-bleed-content { max-width: 560px; }
 .full-bleed-content .lead { color: var(--beige-arena-suave); }
 .full-bleed h2 { color: var(--blanco-calido); }
-
-@media (max-width: 700px) {
-  .full-bleed { background-attachment: scroll; }
-}
 
 /* ---------- 10) COCINA ---------- */
 .kitchen {
