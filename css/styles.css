@@ -188,6 +188,8 @@ section { padding-block: var(--space-6); position: relative; }
   letter-spacing: 0.08em;
   color: var(--blanco-calido);
   transition: color var(--transition);
+  height: auto;
+  width: 120px;
 }
 .site-header.is-scrolled .logo { color: var(--carbon); }
 
