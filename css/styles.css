@@ -568,6 +568,7 @@ section { padding-block: var(--space-6); position: relative; }
 }
 .location-item p { margin: 0; color: var(--carbon-suave); font-size: 0.95rem; }
 
+
 /* ---------- 14) FOOTER ---------- */
 .site-footer {
   background: var(--carbon);

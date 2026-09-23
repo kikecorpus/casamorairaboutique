@@ -1,416 +1,508 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Casa Moraira — Refugio mediterráneo boutique</title>
-<meta name="description" content="Casa Moraira es un alojamiento boutique de 5 habitaciones frente al Mediterráneo: alberca al aire libre, cocina compartida y decoración artesanal para desconectar.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casa Moraira — Refugio mediterráneo boutique</title>
+  <meta name="description"
+    content="Casa Moraira es un alojamiento boutique de 5 habitaciones frente al Mediterráneo: alberca al aire libre, cocina compartida y decoración artesanal para desconectar.">
 
-<!-- Open Graph básico (SEO / redes sociales) -->
-<meta property="og:title" content="Casa Moraira — Un refugio mediterráneo para desconectar">
-<meta property="og:description" content="Alojamiento boutique de 5 habitaciones frente al mar. Alberca, cocina compartida y decoración artesanal.">
-<meta property="og:type" content="website">
-<meta property="og:image" content="assets/img/hero-villa.jpg">
+  <!-- Open Graph básico (SEO / redes sociales) -->
+  <meta property="og:title" content="Casa Moraira — Un refugio mediterráneo para desconectar">
+  <meta property="og:description"
+    content="Alojamiento boutique de 5 habitaciones frente al mar. Alberca, cocina compartida y decoración artesanal.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/img/hero-villa.jpg">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Lato:wght@400;700;900&display=swap"
+    rel="stylesheet">
 
-<link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+
 </head>
+
 <body>
 
-<a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-<!-- =================== HEADER =================== -->
-<header class="site-header" id="siteHeader">
-  <div class="wrap">
-    <a class="logo" href="#inicio">Casa Moraira</a>
-
-    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav">
-      <span></span><span></span><span></span>
-    </button>
-
-    <nav class="main-nav" id="mainNav">
-      <ul>
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#habitaciones">Habitaciones</a></li>
-        <li><a href="#la-casa">La Casa</a></li>
-        <li><a href="#experiencia">Experiencia</a></li>
-        <li><a href="#ubicacion">Ubicación</a></li>
-        <li><a href="#reservar" class="nav-cta">Reservar</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<main id="contenido">
-
-<!-- =================== HERO =================== -->
-  <section class="hero" id="inicio">
-    <!-- El video de fondo -->
-    <video class="hero-video" autoplay muted loop playsinline>
-      <source src="./assets/img/hero-villa.mp4" type="video/mp4">
-      Tu navegador no soporta videos en segundo plano.
-    </video>
-
-    <!-- Capa oscura para mantener el gradiente CSS original sobre el video -->
-    <div class="hero-overlay"></div>
-
+  <!-- =================== HEADER =================== -->
+  <header class="site-header" id="siteHeader">
     <div class="wrap">
-      <div class="hero-content">
-        <p class="hero-eyebrow">Moraira, Costa Blanca</p>
-        <h1>Casa Moraira</h1>
-        <p class="lead">Un refugio mediterráneo para desconectar.</p>
-        <div class="hero-actions">
-          <a href="#reservar" class="btn btn-ghost-light">RESERVAR ESTANCIA</a>
-        </div>
-      </div>
-    </div>
-    <span class="scroll-hint" aria-hidden="true">Descubre la casa</span>
-  </section>
+      <a class="logo" href="#inicio">Casa Moraira</a>
 
-  <!-- =================== PRESENTACIÓN =================== -->
-  <section id="la-casa">
-    <div class="wrap intro">
-      <div class="intro-media reveal">
-        <img src="assets/img/presentacion.jpg" alt="Espacio de descanso en Casa Moraira, decoración mediterránea con luz natural (imagen de ejemplo)" loading="lazy">
-      </div>
-      <div class="intro-text reveal">
-        <p class="kicker">La casa</p>
-        <h2>Un lugar para bajar el ritmo</h2>
-        <p>Casa Moraira es un alojamiento pequeño y exclusivo, pensado para quienes buscan calma frente al Mediterráneo. Cinco habitaciones, una alberca al aire libre y una cocina para compartir componen un espacio donde los días transcurren despacio, entre materiales naturales, luz y silencio.</p>
-        <div class="intro-features">
-          <div class="intro-feature">
-            <p class="num">5</p>
-            <p>Habitaciones con identidad propia</p>
-          </div>
-          <div class="intro-feature">
-            <p class="num">1</p>
-            <p>Alberca al aire libre</p>
-          </div>
-          <div class="intro-feature">
-            <p class="num">·</p>
-            <p>Cocina compartida y abierta</p>
-          </div>
-          <div class="intro-feature">
-            <p class="num">·</p>
-            <p>Ambiente mediterráneo y artesanal</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
 
-  <!-- =================== HABITACIONES =================== -->
-  <section id="habitaciones">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="kicker">Alojamiento</p>
-        <h2>Nuestras habitaciones</h2>
-        <hr class="divider">
-        <p>Cinco habitaciones, cinco maneras de habitar Casa Moraira. Cada una lleva el nombre de un elemento del paisaje mediterráneo.</p>
-      </div>
-
-      <div class="rooms-list">
-
-        <!-- SOL -->
-        <article class="room-row reveal">
-          <div class="room-media">
-            <img src="assets/img/room-sol.jpg" alt="Habitación Sol de Casa Moraira (imagen de ejemplo)" loading="lazy">
-            <span class="room-name-tag">Sol</span>
-          </div>
-          <div class="room-copy">
-            <h3>Sol</h3>
-            <p class="room-meta">
-              <span>Hasta 2 huéspedes*</span>
-              <span>Vistas al patio*</span>
-            </p>
-            <p>Luminosa y orientada a levante, la habitación Sol recibe la luz de la mañana sobre tonos cálidos y fibras naturales.</p>
-            <ul class="room-features">
-              <li>Cama doble*</li>
-              <li>Baño privado*</li>
-              <li>Terraza compartida*</li>
-            </ul>
-            <a href="habitaciones/sol.html" class="btn btn-outline">Ver habitación</a>
-          </div>
-        </article>
-
-        <!-- ARENA -->
-        <article class="room-row reveal">
-          <div class="room-media">
-            <img src="assets/img/room-arena.jpg" alt="Habitación Arena de Casa Moraira (imagen de ejemplo)" loading="lazy">
-            <span class="room-name-tag">Arena</span>
-          </div>
-          <div class="room-copy">
-            <h3>Arena</h3>
-            <p class="room-meta">
-              <span>Hasta 2 huéspedes*</span>
-              <span>Planta baja*</span>
-            </p>
-            <p>Tonos beige y texturas de fibra natural evocan las dunas cercanas al mar en un espacio sereno y acogedor.</p>
-            <ul class="room-features">
-              <li>Cama doble*</li>
-              <li>Baño privado*</li>
-              <li>Acceso directo al jardín*</li>
-            </ul>
-            <a href="habitaciones/arena.html" class="btn btn-outline">Ver habitación</a>
-          </div>
-        </article>
-
-        <!-- LUNA -->
-        <article class="room-row reveal">
-          <div class="room-media">
-            <img src="assets/img/room-luna.jpg" alt="Habitación Luna de Casa Moraira (imagen de ejemplo)" loading="lazy">
-            <span class="room-name-tag">Luna</span>
-          </div>
-          <div class="room-copy">
-            <h3>Luna</h3>
-            <p class="room-meta">
-              <span>Hasta 2 huéspedes*</span>
-              <span>Planta superior*</span>
-            </p>
-            <p>La más recogida de la casa, pensada para noches tranquilas bajo tonos grises y madera envejecida.</p>
-            <ul class="room-features">
-              <li>Cama doble*</li>
-              <li>Baño privado*</li>
-              <li>Balcón interior*</li>
-            </ul>
-            <a href="habitaciones/luna.html" class="btn btn-outline">Ver habitación</a>
-          </div>
-        </article>
-
-        <!-- AGUA -->
-        <article class="room-row reveal">
-          <div class="room-media">
-            <img src="assets/img/room-agua.jpg" alt="Habitación Agua de Casa Moraira (imagen de ejemplo)" loading="lazy">
-            <span class="room-name-tag">Agua</span>
-          </div>
-          <div class="room-copy">
-            <h3>Agua</h3>
-            <p class="room-meta">
-              <span>Hasta 3 huéspedes*</span>
-              <span>Junto a la alberca*</span>
-            </p>
-            <p>La habitación más próxima a la alberca, con una paleta de azules suaves y cerámica artesanal.</p>
-            <ul class="room-features">
-              <li>Cama doble + individual*</li>
-              <li>Baño privado*</li>
-              <li>Vistas a la piscina*</li>
-            </ul>
-            <a href="habitaciones/agua.html" class="btn btn-outline">Ver habitación</a>
-          </div>
-        </article>
-
-        <!-- MAR -->
-        <article class="room-row reveal">
-          <div class="room-media">
-            <img src="assets/img/room-mar.jpg" alt="Habitación Mar de Casa Moraira (imagen de ejemplo)" loading="lazy">
-            <span class="room-name-tag">Mar</span>
-          </div>
-          <div class="room-copy">
-            <h3>Mar</h3>
-            <p class="room-meta">
-              <span>Hasta 2 huéspedes*</span>
-              <span>Habitación principal*</span>
-            </p>
-            <p>La habitación más amplia de la casa, con troncos de mar y macramé como protagonistas de la decoración.</p>
-            <ul class="room-features">
-              <li>Cama king size*</li>
-              <li>Baño privado con bañera*</li>
-              <li>Zona de estar propia*</li>
-            </ul>
-            <a href="habitaciones/mar.html" class="btn btn-outline">Ver habitación</a>
-          </div>
-        </article>
-
-      </div>
-      <p class="booking-note">*Datos de ejemplo. Sustituir por la información real de capacidad, cama y servicios de cada habitación.</p>
-    </div>
-  </section>
-
-  <!-- =================== ALBERCA =================== -->
-<section class="full-bleed pool">
-  <!-- Video de fondo -->
-  <video class="bg-video" autoplay loop muted playsinline>
-    <source src="./assets/img/pool.mp4" type="video/mp4" />
-    Tu navegador no soporta videos HTML5.
-  </video>
-
-  <div class="wrap">
-    <div class="full-bleed-content reveal">
-      <p class="kicker" style="color:var(--beige-arena)">Alberca</p>
-      <h2>Días de sol, agua y calma.</h2>
-      <p class="lead">Una piscina al aire libre rodeada de vegetación mediterránea, pensada para las horas lentas del día.</p>
-    </div>
-  </div>
-</section>
-
-  <!-- =================== COCINA =================== -->
-  <section id="cocina">
-    <div class="wrap kitchen">
-      <div class="kitchen-gallery reveal">
-        <img src="assets/img/cocina-1.jpg" alt="Cocina mediterránea de Casa Moraira con materiales naturales (imagen de ejemplo)" loading="lazy">
-        <img src="assets/img/cocina-2.jpg" alt="Detalle de cerámica artesanal en la cocina (imagen de ejemplo)" loading="lazy">
-        <img src="assets/img/cocina-3.jpg" alt="Luz natural entrando en la cocina compartida (imagen de ejemplo)" loading="lazy">
-      </div>
-      <div class="kitchen-copy reveal">
-        <p class="kicker">La cocina</p>
-        <h2>Cocina para compartir</h2>
-        <p>Un espacio abierto y luminoso, con madera, cerámica y fibras naturales, donde los huéspedes pueden cocinar, compartir una comida o simplemente sentarse a conversar.</p>
-        <p>Cada detalle —desde la vajilla hasta los utensilios— sigue la misma idea de sencillez y artesanía que recorre el resto de la casa.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- =================== EXPERIENCIA =================== -->
-  <section id="experiencia">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="kicker">Detalles</p>
-        <h2>La experiencia Casa Moraira</h2>
-        <hr class="divider">
-      </div>
-      <div class="experience-strip reveal">
-        <figure>
-          <img src="assets/img/exp-macrame.jpg" alt="Macramé artesanal, detalle decorativo de Casa Moraira (imagen de ejemplo)" loading="lazy">
-          <figcaption>Macramé</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/img/exp-troncos.jpg" alt="Troncos de mar utilizados como elemento decorativo (imagen de ejemplo)" loading="lazy">
-          <figcaption>Troncos de mar</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/img/exp-ceramica.jpg" alt="Cerámica artesanal en Casa Moraira (imagen de ejemplo)" loading="lazy">
-          <figcaption>Cerámica</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/img/exp-textiles.jpg" alt="Textiles naturales en las habitaciones (imagen de ejemplo)" loading="lazy">
-          <figcaption>Textiles naturales</figcaption>
-        </figure>
-      </div>
-      <div class="experience-copy reveal">
-        <p>La decoración de Casa Moraira no es un añadido: es parte de la experiencia. Madera, fibras naturales, cerámica hecha a mano y plantas conviven con la luz mediterránea para crear un ambiente pensado para la desconexión, dentro y fuera de las habitaciones.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- =================== RESERVAS =================== -->
-  <section class="booking" id="reservar">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="kicker">Reservas</p>
-        <h2>Comprueba tu estancia</h2>
-        <hr class="divider">
-        <p>Introduce tus fechas para ver la disponibilidad de nuestras habitaciones. La interfaz está preparada para integrarse próximamente con un sistema de reservas real.</p>
-      </div>
-
-      <form class="booking-form reveal" id="bookingForm">
-        <div class="field">
-          <label for="checkin">Check-in</label>
-          <input type="date" id="checkin" name="checkin" required>
-        </div>
-        <div class="field">
-          <label for="checkout">Check-out</label>
-          <input type="date" id="checkout" name="checkout" required>
-        </div>
-        <div class="field">
-          <label for="guests">Huéspedes</label>
-          <select id="guests" name="guests">
-            <option value="1">1 huésped</option>
-            <option value="2" selected>2 huéspedes</option>
-            <option value="3">3 huéspedes</option>
-            <option value="4">4 huéspedes</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="room">Habitación</label>
-          <select id="room" name="room">
-            <option value="cualquiera">Cualquiera</option>
-            <option value="sol">Sol</option>
-            <option value="arena">Arena</option>
-            <option value="luna">Luna</option>
-            <option value="agua">Agua</option>
-            <option value="mar">Mar</option>
-          </select>
-        </div>
-        <button type="submit" class="btn btn-primary">COMPROBAR DISPONIBILIDAD</button>
-      </form>
-
-      <div class="booking-results" id="bookingResults" hidden aria-live="polite"></div>
-      <p class="booking-note">Los precios y la disponibilidad mostrados son de ejemplo. Este formulario quedará conectado a un motor de reservas real.</p>
-    </div>
-  </section>
-
-  <!-- =================== UBICACIÓN =================== -->
-  <section id="ubicacion">
-    <div class="wrap location">
-      <div class="location-map reveal" role="img" aria-label="Mapa de ubicación de Casa Moraira (placeholder, pendiente de integrar Google Maps)">
-        [ Mapa — integrar Google Maps / OpenStreetMap con la dirección real ]
-      </div>
-      <div class="location-content reveal">
-        <p class="kicker">Ubicación</p>
-        <h2>Cómo llegar</h2>
-        <p>Casa Moraira se encuentra en Moraira, en la Costa Blanca de Alicante. [Dirección exacta pendiente de facilitar].</p>
-        <div class="location-list">
-          <div class="location-item">
-            <span class="dist">5&nbsp;min*</span>
-            <p>Caminando hasta la playa más cercana.</p>
-          </div>
-          <div class="location-item">
-            <span class="dist">10&nbsp;min*</span>
-            <p>En coche hasta el centro de Moraira y su puerto.</p>
-          </div>
-          <div class="location-item">
-            <span class="dist">45&nbsp;min*</span>
-            <p>En coche hasta el aeropuerto de Alicante.</p>
-          </div>
-        </div>
-        <p class="booking-note">*Distancias de ejemplo, a confirmar con la dirección real del hotel.</p>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- =================== FOOTER =================== -->
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <p class="footer-logo">Casa Moraira</p>
-        <p class="footer-tag">Un refugio mediterráneo para desconectar, frente al mar en Moraira.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Explorar</h4>
+      <nav class="main-nav" id="mainNav">
         <ul>
+          <li><a href="#inicio">Inicio</a></li>
           <li><a href="#habitaciones">Habitaciones</a></li>
-          <li><a href="#reservar">Reservas</a></li>
+          <li><a href="#la-casa">La Casa</a></li>
+          <li><a href="#experiencia">Experiencia</a></li>
           <li><a href="#ubicacion">Ubicación</a></li>
+          <li><a href="#reservar" class="nav-cta">Reservar</a></li>
         </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contacto</h4>
-        <ul>
-          <li><a href="mailto:hola@casamoraira.example">hola@casamoraira.example</a></li>
-          <li><a href="tel:+34600000000">+34 600 000 000*</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Síguenos</h4>
-        <ul>
-          <li><a href="https://instagram.com/casamoraira" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="https://wa.me/34600000000" target="_blank" rel="noopener">WhatsApp*</a></li>
-        </ul>
-      </div>
+      </nav>
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 Casa Moraira. Todos los derechos reservados.</p>
-      <p>*Datos de contacto de ejemplo — sustituir por los reales.</p>
-    </div>
-  </div>
-</footer>
+  </header>
 
-<script src="js/main.js"></script>
+  <main id="contenido">
+
+    <!-- =================== HERO =================== -->
+    <section class="hero" id="inicio">
+      <!-- El video de fondo -->
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="./assets/img/hero-villa.mp4" type="video/mp4">
+        Tu navegador no soporta videos en segundo plano.
+      </video>
+
+      <!-- Capa oscura para mantener el gradiente CSS original sobre el video -->
+      <div class="hero-overlay"></div>
+
+      <div class="wrap">
+        <div class="hero-content">
+          <p class="hero-eyebrow">Moraira, Costa Blanca</p>
+          <h1>Casa Moraira</h1>
+          <p class="lead">Un refugio mediterráneo para desconectar.</p>
+          <div class="hero-actions">
+            <a href="#reservar" class="btn btn-ghost-light">RESERVAR ESTANCIA</a>
+          </div>
+        </div>
+      </div>
+      <span class="scroll-hint" aria-hidden="true">Descubre la casa</span>
+    </section>
+
+    <!-- =================== PRESENTACIÓN =================== -->
+    <section id="la-casa">
+      <div class="wrap intro">
+        <div class="intro-media reveal">
+          <img src="assets/img/presentacion.jpg"
+            alt="Espacio de descanso en Casa Moraira, decoración mediterránea con luz natural (imagen de ejemplo)"
+            loading="lazy">
+        </div>
+        <div class="intro-text reveal">
+          <p class="kicker">La casa</p>
+          <h2>Un lugar para bajar el ritmo</h2>
+          <p>Casa Moraira es un alojamiento pequeño y exclusivo, pensado para quienes buscan calma frente al
+            Mediterráneo. Cinco habitaciones, una alberca al aire libre y una cocina para compartir componen un espacio
+            donde los días transcurren despacio, entre materiales naturales, luz y silencio.</p>
+          <div class="intro-features">
+            <div class="intro-feature">
+              <p class="num">5</p>
+              <p>Habitaciones con identidad propia</p>
+            </div>
+            <div class="intro-feature">
+              <p class="num">1</p>
+              <p>Alberca al aire libre</p>
+            </div>
+            <div class="intro-feature">
+              <p class="num">·</p>
+              <p>Cocina compartida y abierta</p>
+            </div>
+            <div class="intro-feature">
+              <p class="num">·</p>
+              <p>Ambiente mediterráneo y artesanal</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== HABITACIONES =================== -->
+    <section id="habitaciones">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="kicker">Alojamiento</p>
+          <h2>Nuestras habitaciones</h2>
+          <hr class="divider">
+          <p>Cinco habitaciones, cinco maneras de habitar Casa Moraira. Cada una lleva el nombre de un elemento del
+            paisaje mediterráneo.</p>
+        </div>
+
+        <div class="rooms-list">
+
+          <!-- SOL -->
+          <article class="room-row reveal">
+            <div class="room-media">
+              <img src="assets/img/room-sol.jpg" alt="Habitación Sol de Casa Moraira (imagen de ejemplo)"
+                loading="lazy">
+              <span class="room-name-tag">Sol</span>
+            </div>
+            <div class="room-copy">
+              <h3>Sol</h3>
+              <p class="room-meta">
+                <span>Hasta 2 huéspedes*</span>
+                <span>Vistas al patio*</span>
+              </p>
+              <p>Luminosa y orientada a levante, la habitación Sol recibe la luz de la mañana sobre tonos cálidos y
+                fibras naturales.</p>
+              <ul class="room-features">
+                <li>Cama doble*</li>
+                <li>Baño privado*</li>
+                <li>Terraza compartida*</li>
+              </ul>
+              <a href="habitaciones/sol.html" class="btn btn-outline">Ver habitación</a>
+            </div>
+          </article>
+
+          <!-- ARENA -->
+          <article class="room-row reveal">
+            <div class="room-media">
+              <img src="assets/img/room-arena.jpg" alt="Habitación Arena de Casa Moraira (imagen de ejemplo)"
+                loading="lazy">
+              <span class="room-name-tag">Arena</span>
+            </div>
+            <div class="room-copy">
+              <h3>Arena</h3>
+              <p class="room-meta">
+                <span>Hasta 2 huéspedes*</span>
+                <span>Planta baja*</span>
+              </p>
+              <p>Tonos beige y texturas de fibra natural evocan las dunas cercanas al mar en un espacio sereno y
+                acogedor.</p>
+              <ul class="room-features">
+                <li>Cama doble*</li>
+                <li>Baño privado*</li>
+                <li>Acceso directo al jardín*</li>
+              </ul>
+              <a href="habitaciones/arena.html" class="btn btn-outline">Ver habitación</a>
+            </div>
+          </article>
+
+          <!-- LUNA -->
+          <article class="room-row reveal">
+            <div class="room-media">
+              <img src="assets/img/room-luna.jpg" alt="Habitación Luna de Casa Moraira (imagen de ejemplo)"
+                loading="lazy">
+              <span class="room-name-tag">Luna</span>
+            </div>
+            <div class="room-copy">
+              <h3>Luna</h3>
+              <p class="room-meta">
+                <span>Hasta 2 huéspedes*</span>
+                <span>Planta superior*</span>
+              </p>
+              <p>La más recogida de la casa, pensada para noches tranquilas bajo tonos grises y madera envejecida.</p>
+              <ul class="room-features">
+                <li>Cama doble*</li>
+                <li>Baño privado*</li>
+                <li>Balcón interior*</li>
+              </ul>
+              <a href="habitaciones/luna.html" class="btn btn-outline">Ver habitación</a>
+            </div>
+          </article>
+
+          <!-- AGUA -->
+          <article class="room-row reveal">
+            <div class="room-media">
+              <img src="assets/img/room-agua.jpg" alt="Habitación Agua de Casa Moraira (imagen de ejemplo)"
+                loading="lazy">
+              <span class="room-name-tag">Agua</span>
+            </div>
+            <div class="room-copy">
+              <h3>Agua</h3>
+              <p class="room-meta">
+                <span>Hasta 3 huéspedes*</span>
+                <span>Junto a la alberca*</span>
+              </p>
+              <p>La habitación más próxima a la alberca, con una paleta de azules suaves y cerámica artesanal.</p>
+              <ul class="room-features">
+                <li>Cama doble + individual*</li>
+                <li>Baño privado*</li>
+                <li>Vistas a la piscina*</li>
+              </ul>
+              <a href="habitaciones/agua.html" class="btn btn-outline">Ver habitación</a>
+            </div>
+          </article>
+
+          <!-- MAR -->
+          <article class="room-row reveal">
+            <div class="room-media">
+              <img src="assets/img/room-mar.jpg" alt="Habitación Mar de Casa Moraira (imagen de ejemplo)"
+                loading="lazy">
+              <span class="room-name-tag">Mar</span>
+            </div>
+            <div class="room-copy">
+              <h3>Mar</h3>
+              <p class="room-meta">
+                <span>Hasta 2 huéspedes*</span>
+                <span>Habitación principal*</span>
+              </p>
+              <p>La habitación más amplia de la casa, con troncos de mar y macramé como protagonistas de la decoración.
+              </p>
+              <ul class="room-features">
+                <li>Cama king size*</li>
+                <li>Baño privado con bañera*</li>
+                <li>Zona de estar propia*</li>
+              </ul>
+              <a href="habitaciones/mar.html" class="btn btn-outline">Ver habitación</a>
+            </div>
+          </article>
+
+        </div>
+        <p class="booking-note">*Datos de ejemplo. Sustituir por la información real de capacidad, cama y servicios de
+          cada habitación.</p>
+      </div>
+    </section>
+
+    <!-- =================== ALBERCA =================== -->
+    <section class="full-bleed pool">
+      <!-- Video de fondo -->
+      <video class="bg-video" autoplay loop muted playsinline>
+        <source src="./assets/img/pool.mp4" type="video/mp4" />
+        Tu navegador no soporta videos HTML5.
+      </video>
+
+      <div class="wrap">
+        <div class="full-bleed-content reveal">
+          <p class="kicker" style="color:var(--beige-arena)">Alberca</p>
+          <h2>Días de sol, agua y calma.</h2>
+          <p class="lead">Una piscina al aire libre rodeada de vegetación mediterránea, pensada para las horas lentas
+            del día.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== COCINA =================== -->
+    <section id="cocina">
+      <div class="wrap kitchen">
+        <div class="kitchen-gallery reveal">
+          <img src="assets/img/cocina-1.jpg"
+            alt="Cocina mediterránea de Casa Moraira con materiales naturales (imagen de ejemplo)" loading="lazy">
+          <img src="assets/img/cocina-2.jpg" alt="Detalle de cerámica artesanal en la cocina (imagen de ejemplo)"
+            loading="lazy">
+          <img src="assets/img/cocina-3.jpg" alt="Luz natural entrando en la cocina compartida (imagen de ejemplo)"
+            loading="lazy">
+        </div>
+        <div class="kitchen-copy reveal">
+          <p class="kicker">La cocina</p>
+          <h2>Cocina para compartir</h2>
+          <p>Un espacio abierto y luminoso, con madera, cerámica y fibras naturales, donde los huéspedes pueden cocinar,
+            compartir una comida o simplemente sentarse a conversar.</p>
+          <p>Cada detalle —desde la vajilla hasta los utensilios— sigue la misma idea de sencillez y artesanía que
+            recorre el resto de la casa.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== COMPARTIR =================== -->
+    <section id="compartir">
+      <div class="wrap kitchen">
+        <div class="kitchen-copy reveal">
+          <p class="kicker">La cocina</p>
+          <h2>Espacios para compartir</h2>
+          <p>Un espacio abierto y luminoso, con madera, cerámica y fibras naturales, donde los huéspedes pueden cocinar,
+            compartir una comida o simplemente sentarse a conversar.</p>
+          <p>Cada detalle —desde la vajilla hasta los utensilios— sigue la misma idea de sencillez y artesanía que
+            recorre el resto de la casa.</p>
+        </div>
+        <div class="kitchen-gallery reveal">
+          <img src="assets/img/compartir-1.jpg"
+            alt="Cocina mediterránea de Casa Moraira con materiales naturales (imagen de ejemplo)" loading="lazy">
+          <img src="assets/img/compartir-2.jpg" alt="Detalle de cerámica artesanal en la cocina (imagen de ejemplo)"
+            loading="lazy">
+          <img src="assets/img/compartir-3.jpg" alt="Luz natural entrando en la cocina compartida (imagen de ejemplo)"
+            loading="lazy">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =================== EXPERIENCIA =================== -->
+    <section id="experiencia">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="kicker">Detalles</p>
+          <h2>La experiencia Casa Moraira</h2>
+          <hr class="divider">
+        </div>
+        <div class="experience-strip reveal">
+          <figure>
+            <img src="assets/img/letrero.jpg"
+              alt="Macramé artesanal, detalle decorativo de Casa Moraira (imagen de ejemplo)" loading="lazy">
+            <figcaption>Macramé</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/img/desayuno1.jpg"
+              alt="Troncos de mar utilizados como elemento decorativo (imagen de ejemplo)" loading="lazy">
+            <figcaption>Troncos de mar</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/img/decoracion.jpg" alt="Cerámica artesanal en Casa Moraira (imagen de ejemplo)"
+              loading="lazy">
+            <figcaption>Cerámica</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/img/compartir-5.jpg" alt="Textiles naturales en las habitaciones (imagen de ejemplo)"
+              loading="lazy">
+            <figcaption>Textiles naturales</figcaption>
+          </figure>
+        </div>
+        <div class="experience-copy reveal">
+          <p>La decoración de Casa Moraira no es un añadido: es parte de la experiencia. Madera, fibras naturales,
+            cerámica hecha a mano y plantas conviven con la luz mediterránea para crear un ambiente pensado para la
+            desconexión, dentro y fuera de las habitaciones.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== RESERVAS =================== -->
+    <section class="booking" id="reservar">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="kicker">Reservas</p>
+          <h2>Comprueba tu estancia</h2>
+          <hr class="divider">
+          <p>Introduce tus fechas para ver la disponibilidad de nuestras habitaciones. La interfaz está preparada para
+            integrarse próximamente con un sistema de reservas real.</p>
+        </div>
+
+        <form class="booking-form reveal" id="bookingForm">
+          <div class="field">
+            <label for="checkin">Check-in</label>
+            <input type="date" id="checkin" name="checkin" required>
+          </div>
+          <div class="field">
+            <label for="checkout">Check-out</label>
+            <input type="date" id="checkout" name="checkout" required>
+          </div>
+          <div class="field">
+            <label for="guests">Huéspedes</label>
+            <select id="guests" name="guests">
+              <option value="1">1 huésped</option>
+              <option value="2" selected>2 huéspedes</option>
+              <option value="3">3 huéspedes</option>
+              <option value="4">4 huéspedes</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="room">Habitación</label>
+            <select id="room" name="room">
+              <option value="cualquiera">Cualquiera</option>
+              <option value="sol">Sol</option>
+              <option value="arena">Arena</option>
+              <option value="luna">Luna</option>
+              <option value="agua">Agua</option>
+              <option value="mar">Mar</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">COMPROBAR DISPONIBILIDAD</button>
+        </form>
+
+        <div class="booking-results" id="bookingResults" hidden aria-live="polite"></div>
+        <p class="booking-note">Los precios y la disponibilidad mostrados son de ejemplo. Este formulario quedará
+          conectado a un motor de reservas real.</p>
+      </div>
+    </section>
+
+    <!-- =================== UBICACIÓN =================== -->
+    <section id="ubicacion">
+      <div class="wrap location">
+
+        <!-- MAPA -->
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3548.783882517272!2d-75.54455009139737!3d10.421654240799109!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef62f500424e46b%3A0xa66fd814594ac69c!2sCasa%20Moraira!5e0!3m2!1ses-419!2sco!4v1790123869666!5m2!1ses-419!2sco"
+          width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"></iframe>
+
+        <!-- INFORMACIÓN -->
+        <div class="location-content reveal">
+
+          <p class="kicker">Ubicación</p>
+
+          <h2>Cómo llegar</h2>
+
+          <p>
+            Casa Moraira se encuentra en Moraira,
+            en la Costa Blanca de Alicante.
+          </p>
+
+
+          <div class="location-list">
+
+            <div class="location-item">
+              <span class="dist">5&nbsp;min*</span>
+              <p>
+                Caminando hasta la playa más cercana.
+              </p>
+            </div>
+
+            <div class="location-item">
+              <span class="dist">10&nbsp;min*</span>
+              <p>
+                En coche hasta el centro de Moraira
+                y su puerto.
+              </p>
+            </div>
+
+            <div class="location-item">
+              <span class="dist">45&nbsp;min*</span>
+              <p>
+                En coche hasta el aeropuerto de Alicante.
+              </p>
+            </div>
+
+          </div>
+
+
+          <p class="booking-note">
+            *Distancias aproximadas. Pueden variar según
+            el punto de partida y las condiciones de tráfico.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- =================== FOOTER =================== -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <p class="footer-logo">Casa Moraira</p>
+          <p class="footer-tag">Un refugio mediterráneo para desconectar, frente al mar en Moraira.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explorar</h4>
+          <ul>
+            <li><a href="#habitaciones">Habitaciones</a></li>
+            <li><a href="#reservar">Reservas</a></li>
+            <li><a href="#ubicacion">Ubicación</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="mailto:hola@casamoraira.example">hola@casamoraira.example</a></li>
+            <li><a href="tel:+34600000000">+34 600 000 000*</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Síguenos</h4>
+          <ul>
+            <li><a href="https://instagram.com/casamoraira" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://wa.me/34600000000" target="_blank" rel="noopener">WhatsApp*</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Casa Moraira. Todos los derechos reservados.</p>
+        <p>*Datos de contacto de ejemplo — sustituir por los reales.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+  <script src="mapa.js"></script>
 </body>
+
 </html>
