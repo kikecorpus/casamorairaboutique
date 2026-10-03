@@ -1,0 +1,76 @@
+/* Idea 2: Overlay con banner panorámico */
+.hero-split {
+  position: relative;
+  min-height: 550px;
+  display: flex;
+  align-items: center;
+  padding-block: var(--space-5);
+}
+
+.split-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.split-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-overlay {
+  max-width: 480px;
+  background: rgba(241, 233, 216, 0.95); /* Blanco cálido con ligera transparencia */
+  backdrop-filter: blur(8px);
+  padding: var(--space-4);
+  border: 1px solid var(--linea);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.historia-inferior {
+  padding-block: var(--space-6);
+  background: var(--beige-arena-suave);
+}
+
+.lead-text {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.4;
+  color: var(--azul-mediterraneo);
+  margin-bottom: 1.5rem;
+}
+
+.highlight-brand {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--terracota);
+  margin-top: 1.5rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .hero-split {
+    min-height: auto;
+  }
+  .card-overlay {
+    max-width: 100%;
+  }
+}
+/* Quita el espacio inferior de la sección de Origen / La Casa */
+#la-casa-origen,
+#la-casa-split,
+#la-casa {
+  padding-bottom: 0 !important;
+}
+
+/* Quita el espacio superior de la sección de la piscina */
+.full-bleed.pool,
+.pool {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+
+.card-overlay h1 { font-size: clamp(2rem, 4vw, 3.1rem); line-height: 1.15; }

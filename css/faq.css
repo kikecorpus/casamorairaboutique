@@ -1,0 +1,99 @@
+/* ==========================================================================
+   CASA MORAIRA — Estilos específicos de FAQ y CTA de Reserva
+   ========================================================================== */
+
+/* Hero superior */
+.hero-faq {
+  padding-top: calc(var(--space-6) + 2rem);
+  padding-bottom: var(--space-5);
+  background: var(--beige-arena-suave);
+  text-align: center;
+}
+
+/* Acordeón de FAQ */
+.seccion-faq {
+  padding-block: var(--space-6);
+  background: var(--blanco-calido);
+}
+
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.faq-item {
+  background: var(--beige-arena-suave);
+  border: 1px solid var(--linea);
+  border-radius: 2px;
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+
+.faq-item[open] {
+  border-color: var(--terracota);
+}
+
+.faq-question {
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--azul-mediterraneo);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none; /* Oculta la flecha nativa */
+  user-select: none;
+}
+
+.faq-question::-webkit-details-marker {
+  display: none; /* Oculta en Safari */
+}
+
+.faq-icon {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--terracota);
+  transition: transform var(--transition);
+}
+
+.faq-item[open] .faq-icon {
+  transform: rotate(45deg); /* Modifica el símbolo + por una X */
+}
+
+.faq-answer {
+  padding: 0 var(--space-4) var(--space-4) var(--space-4);
+  color: var(--carbon-suave);
+  line-height: 1.6;
+}
+
+.faq-answer p {
+  margin: 0;
+}
+
+/* Bloque CTA de Reserva */
+.seccion-reservar-cta {
+  padding-block: var(--space-6);
+  background: var(--beige-arena-suave);
+  border-top: 1px solid var(--linea);
+}
+
+.lead-cta {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  color: var(--azul-mediterraneo);
+  margin-top: 1rem;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .faq-question {
+    padding: var(--space-3);
+    font-size: 1.1rem;
+  }
+  
+  .faq-answer {
+    padding: 0 var(--space-3) var(--space-3) var(--space-3);
+  }
+}

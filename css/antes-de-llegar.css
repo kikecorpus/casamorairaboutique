@@ -1,0 +1,83 @@
+/* ==========================================================================
+   CASA MORAIRA — Estilos específicos de la página Antes de Llegar
+   ========================================================================== */
+
+/* Hero superior */
+.hero-llegada {
+  padding-top: calc(var(--space-6) + 2rem);
+  padding-bottom: var(--space-5);
+  background: var(--beige-arena-suave);
+  text-align: center;
+}
+
+/* Grilla de Tarjetas de Información */
+.seccion-info-guia {
+  padding-block: var(--space-6);
+  background: var(--blanco-calido);
+}
+
+.grid-llegada {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+.card-info {
+  background: var(--beige-arena-suave);
+  border: 1px solid var(--linea);
+  padding: var(--space-4);
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition), border-color var(--transition);
+}
+
+.card-info:hover {
+  transform: translateY(-3px);
+  border-color: var(--terracota);
+}
+
+.card-info.card-destacada {
+  grid-column: 1 / -1;
+  background: #EAE3D2; /* Tono de contraste dentro de la paleta */
+}
+
+.card-head h3 {
+  font-size: 1.35rem;
+  color: var(--azul-mediterraneo);
+  margin-bottom: var(--space-2);
+}
+
+.card-body p {
+  margin-bottom: 0.8rem;
+  font-size: 0.98rem;
+  color: var(--carbon-suave);
+}
+
+.card-body p:last-child {
+  margin-bottom: 0;
+}
+
+.nota-suave {
+  font-style: italic;
+  color: var(--verde-oliva);
+}
+
+/* Sección de dudas / soporte */
+.seccion-dudas {
+  padding-block: var(--space-6);
+  background: var(--beige-arena-suave);
+  border-top: 1px solid var(--linea);
+}
+
+/* Responsive */
+@media (max-width: 820px) {
+  .grid-llegada {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .card-info.card-destacada {
+    grid-column: span 1;
+  }
+}

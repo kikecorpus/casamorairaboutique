@@ -1,0 +1,78 @@
+/* ==========================================================================
+   CASA MORAIRA — Estilos específicos de la página de Cartagena
+   ========================================================================== */
+
+/* Hero superior */
+.hero-cartagena {
+  padding-top: calc(var(--space-6) + 2rem);
+  padding-bottom: var(--space-5);
+  background: var(--beige-arena-suave);
+  text-align: center;
+}
+
+/* Grilla de secciones (Getsemaní, Historia, Cartagena) */
+.seccion-entorno {
+  padding-block: var(--space-6);
+}
+
+.grid-entorno {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  align-items: center;
+  margin-bottom: var(--space-6);
+}
+
+.grid-entorno:last-child {
+  margin-bottom: 0;
+}
+
+.grid-entorno.invertir-orden .col-copy {
+  order: 2;
+}
+
+.grid-entorno.invertir-orden .col-media {
+  order: 1;
+}
+
+.grid-entorno .col-media img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.lead-tag {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--terracota);
+  margin-bottom: 0.8rem;
+}
+
+/* Cierre / Mensaje final */
+.seccion-cierre-cartagena {
+  padding-block: var(--space-6);
+  background: var(--beige-arena-suave);
+  border-top: 1px solid var(--linea);
+}
+
+.lead-cierre {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  line-height: 1.4;
+  color: var(--azul-mediterraneo);
+  margin-top: var(--space-3);
+}
+
+/* Adaptación Mobile */
+@media (max-width: 980px) {
+  .grid-entorno {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .grid-entorno.invertir-orden .col-copy,
+  .grid-entorno.invertir-orden .col-media {
+    order: initial;
+  }
+}
