@@ -1,0 +1,37 @@
+/* ==========================================================================
+   VIDEO BAND — franja a sangre con vídeo de fondo (La Casa: piscina)
+   ========================================================================== */
+.video-band {
+  display: flex;
+  align-items: center;
+  min-height: 78vh;
+  padding-top: 0;                 /* enlaza con la sección anterior */
+  overflow: hidden;               /* el vídeo no debe sobresalir */
+  color: var(--color-bg);
+}
+.video-band__video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+}
+/* Capa oscura para contraste */
+.video-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--color-scrim);
+}
+.video-band .wrap { position: relative; z-index: 2; }
+
+.video-band__content { max-width: 560px; }
+.video-band__content h2 { color: var(--color-bg); }
+.video-band__content .kicker { color: var(--beige-arena); }
+.video-band__content .lead { color: var(--beige-arena-suave); }

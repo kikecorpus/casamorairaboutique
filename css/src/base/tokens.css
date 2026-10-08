@@ -1,0 +1,83 @@
+/* ==========================================================================
+   TOKENS — única fuente de verdad de colores, tipografía, espaciado y capas.
+   Regla: los componentes usan tokens SEMÁNTICOS (--color-*), no la paleta
+   de marca directamente. Si cambia la marca, solo se toca este archivo.
+
+   Breakpoints (las media queries no admiten variables, se documentan aquí):
+     1100px  navegación colapsa a menú hamburguesa
+      980px  tablet: rejillas pasan a una columna
+      768px  móvil: banner apilado, espaciado reducido
+      520px  móvil pequeño
+   ========================================================================== */
+:root {
+  /* ---- Paleta de marca (Manual de Marca Casa Moraira) ---- */
+  --blanco-calido: #F1E9DB;        /* Crema */
+  --beige-arena: #DEC39A;          /* Arena cálida */
+  --beige-arena-suave: #F6EFE4;
+  --terracota: #B95736;
+  --terracota-oscuro: #9D4A2E;
+  --azul-mediterraneo: #174E6A;
+  --dorado-solar: #C98A27;
+  --azul-luna: #7F96A3;
+  --perla-lunar: #D8D2C5;
+  --verde-oliva: #6F7457;
+  --salvia-costera: #9BA58C;
+  --arcilla-rosada: #C88972;
+  --marron-madera: #765744;
+  --carbon: #2A2723;
+  --blanco: #FFFFFF;
+  --verde-valoracion: #003B2F;     /* Puntuación de reseñas */
+
+  /* ---- Tokens semánticos (usar estos en los componentes) ---- */
+  --color-bg: var(--blanco-calido);
+  --color-bg-soft: var(--beige-arena-suave);
+  --color-surface: var(--blanco);
+  --color-text: var(--carbon);
+  --color-text-muted: rgba(42, 39, 35, 0.65);
+  --color-heading: var(--azul-mediterraneo);
+  --color-eyebrow: var(--verde-oliva);
+  --color-accent: var(--terracota);
+  --color-accent-hover: var(--terracota-oscuro);
+  --color-highlight: var(--dorado-solar);
+  --color-border: rgba(42, 39, 35, 0.12);
+  --color-border-olive: rgba(111, 116, 87, 0.35);
+  --color-scrim: rgba(41, 38, 34, 0.32);
+  --color-card-glass: rgba(241, 233, 216, 0.95);
+  --color-header-glass: rgba(241, 233, 216, 0.94);
+
+  /* ---- Tipografía ---- */
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-body: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+
+  /* ---- Espaciado ---- */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.75rem;
+  --space-4: 3rem;
+  --space-5: 5rem;
+  --space-6: 8rem;
+
+  /* ---- Layout ---- */
+  --max-width: 1240px;
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+  --header-h: 5.25rem;             /* logo 52px + padding del header */
+  --banner-h: 40rem;               /* ALTURA ÚNICA de los banners de página */
+  --banner-h-sm: 20rem;            /* Altura de la imagen del banner en móvil */
+
+  /* ---- Movimiento ---- */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: 0.5s var(--ease);
+
+  /* ---- Capas ---- */
+  --z-nav-toggle: 2;
+  --z-header: 100;
+  --z-skip-link: 1000;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --space-6: 5rem;
+    --space-5: 3.5rem;
+    --space-4: 2.25rem;
+  }
+}

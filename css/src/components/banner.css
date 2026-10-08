@@ -1,0 +1,88 @@
+/* ==========================================================================
+   BANNER DE PÁGINA
+   Primera sección de TODAS las páginas interiores (La Casa, Habitaciones,
+   cada habitación, Experiencia, Cartagena, Recomendaciones, FAQ).
+   Todas miden lo mismo: --banner-h (tokens.css). La home usa .hero.
+
+   Estructura:
+     <section class="page-banner">
+       <div class="page-banner__media"><img …></div>
+       <div class="wrap"><div class="page-banner__card reveal"> … </div></div>
+     </section>
+   ========================================================================== */
+.page-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--banner-h);
+  /* El header es fixed: se reserva su altura para centrar la tarjeta debajo */
+  padding: calc(var(--header-h) + var(--space-2)) 0 var(--space-3);
+  background: var(--color-bg-soft);   /* color mientras carga la imagen */
+  isolation: isolate;
+}
+.page-banner > .wrap { width: 100%; }
+
+/* Imagen de fondo */
+.page-banner__media { position: absolute; inset: 0; z-index: -1; }
+.page-banner__media img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Degradado suave arriba para que el menú se lea sobre cualquier foto */
+.page-banner__media::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: calc(var(--header-h) * 1.5);
+  background: linear-gradient(to bottom, rgba(6, 6, 5, 0.5), transparent);
+  pointer-events: none;
+}
+
+/* Tarjeta de texto */
+.page-banner__card {
+  max-width: 26rem;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-card-glass);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(8px);
+}
+.page-banner__card h1 { font-size: clamp(1.9rem, 3.4vw, 2.75rem); line-height: 1.15; }
+.page-banner__card .breadcrumb { margin-bottom: var(--space-2); font-size: 0.85rem; color: var(--color-eyebrow); }
+.page-banner__card .breadcrumb a { text-decoration: underline; text-underline-offset: 3px; }
+.page-banner__card > :last-child { margin-bottom: 0; }
+
+/* Móvil: la imagen conserva la MISMA altura en todas las páginas y la
+   tarjeta se apila debajo (solapando un poco), así el texto nunca se corta. */
+@media (max-width: 768px) {
+  .page-banner {
+    display: block;
+    min-height: 0;
+    padding: 0 0 var(--space-4);
+    background: none;
+    isolation: auto;
+  }
+  .page-banner__media {
+    position: relative;
+    inset: auto;
+    z-index: auto;
+    height: var(--banner-h-sm);
+  }
+  .page-banner__card {
+    position: relative;
+    max-width: none;
+    margin-top: calc(var(--space-4) * -1);
+    padding: var(--space-3);
+  }
+}
+  .page-banner__card {
+    margin-inline: auto;   /* centra la tarjeta horizontalmente */
+  }
+
+  .page-banner__card {
+  text-align: center;
+}
+.page-banner__card .divider {
+  margin-inline: auto;   /* centra la línea terracota */
+}
+.page-banner__card p {
+  margin-inline: auto;   /* centra los párrafos, que tienen ancho máximo */
+}

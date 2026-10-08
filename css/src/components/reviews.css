@@ -1,0 +1,93 @@
+/* ==========================================================================
+   REVIEWS — valoración de Booking.com y comentarios destacados (home)
+   ========================================================================== */
+.reviews { background: var(--color-bg-soft); }
+
+.reviews__header { max-width: 720px; margin: 0 auto 4rem; text-align: center; }
+.reviews__header h2 { margin: 0 0 1rem; }
+.reviews__intro { max-width: 600px; margin: 0 auto; line-height: 1.7; color: var(--color-text-muted); }
+
+/* Perfil + puntuación */
+.reviews__summary {
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+.reviews__profile,
+.reviews__score,
+.reviews__item {
+  background: var(--color-surface);
+  border-radius: 16px;
+}
+.reviews__profile,
+.reviews__score { padding: 2rem; }
+
+.reviews__profile { display: flex; align-items: center; gap: 2rem; }
+.reviews__profile-image img { width: 120px; height: 120px; object-fit: cover; border-radius: 50%; }
+.reviews__profile-content h3 { margin: 0 0 1rem; }
+.reviews__profile-content p { margin: 0 0 0.8rem; font-size: 0.95rem; line-height: 1.65; color: var(--color-text-muted); }
+
+.reviews__label,
+.reviews__platform {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.reviews__score { display: flex; align-items: center; gap: 1.5rem; }
+.reviews__score-number {
+  min-width: 110px;
+  padding: 1.2rem;
+  border-radius: 12px;
+  background: var(--verde-valoracion);
+  color: var(--blanco);
+  text-align: center;
+}
+.reviews__score-number strong { display: block; font-size: 3rem; font-weight: 500; line-height: 1; }
+.reviews__score-number span { display: block; margin-top: 0.5rem; font-size: 0.8rem; }
+.reviews__score-info h3 { margin: 0 0 0.6rem; }
+.reviews__score-info p { margin: 0 0 1rem; font-size: 0.9rem; line-height: 1.5; color: var(--color-text-muted); }
+.reviews__score-meta { display: flex; gap: 1rem; font-size: 0.8rem; color: var(--color-text-muted); }
+
+/* Comentarios */
+.reviews__list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
+.reviews__item { padding: 1.7rem; }
+.reviews__item-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.3rem; }
+.reviews__item-header strong { display: block; }
+.reviews__item-header span { display: block; margin-top: 0.2rem; font-size: 0.8rem; color: var(--color-text-muted); }
+.reviews__item-rating {
+  padding: 0.45rem 0.6rem;
+  border-radius: 6px;
+  background: var(--verde-valoracion);
+  color: var(--blanco);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.reviews__item p { margin: 0; font-size: 0.92rem; line-height: 1.7; color: var(--color-text-muted); }
+
+/* Enlace a Booking */
+.reviews__action { margin-top: 2.5rem; text-align: center; }
+.reviews__button {
+  display: inline-block;
+  padding: 0.9rem 1.5rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 6px;
+  color: var(--color-accent);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.reviews__button:hover { background: var(--color-accent); color: var(--blanco); }
+.reviews__updated { margin: 0.8rem auto 0; font-size: 0.75rem; color: var(--color-text-muted); text-align: center; }
+
+@media (max-width: 768px) {
+  .reviews__summary,
+  .reviews__list { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .reviews__profile,
+  .reviews__score { flex-direction: column; text-align: center; }
+  .reviews__score-meta { justify-content: center; }
+}

@@ -1,0 +1,62 @@
+/* ==========================================================================
+   BOOKING FORM — buscador de disponibilidad
+   La sección está comentada en index.html a la espera de un motor de
+   reservas, pero js/main.js ya genera .result-card: se conserva el estilo.
+   ========================================================================== */
+.booking { background: var(--color-bg-soft); }
+
+.booking-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) auto;
+  gap: var(--space-2);
+  align-items: end;
+  padding: var(--space-3);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+}
+.booking-form .btn { height: fit-content; white-space: nowrap; }
+
+.field { display: flex; flex-direction: column; gap: 0.4rem; }
+.field label { font-size: 0.8rem; color: var(--color-eyebrow); }
+.field input,
+.field select {
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+.field input:focus,
+.field select:focus { border-color: var(--color-accent); }
+
+.booking-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+.booking-results[hidden] { display: none; }
+
+.result-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+}
+.result-card h4 { font-size: 1.15rem; }
+.result-card .price { font-family: var(--font-display); font-size: 1.3rem; color: var(--color-accent); }
+
+@media (max-width: 980px) {
+  .booking-form { grid-template-columns: 1fr 1fr; }
+  .booking-form .btn { grid-column: 1 / -1; justify-content: center; }
+}
+@media (max-width: 768px) {
+  .field input, .field select { font-size: 1rem; }   /* evita el zoom de iOS */
+}
+@media (max-width: 520px) {
+  .booking-form { grid-template-columns: 1fr; }
+  .booking-form .btn { width: 100%; }
+}

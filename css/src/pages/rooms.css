@@ -1,0 +1,112 @@
+/* ==========================================================================
+   HABITACIONES — listado y ficha de cada habitación
+   ========================================================================== */
+
+/* ---------- Listado (habitaciones.html) ---------- */
+.room-row {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-5);
+  align-items: center;
+  padding-block: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+.room-row:nth-child(even) { grid-template-columns: 0.9fr 1.1fr; }
+.room-row:nth-child(even) .room-media { order: 2; }
+.room-row:nth-child(even) .room-copy { order: 1; }
+
+.room-media { position: relative; overflow: hidden; }
+.room-media img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; transition: transform 0.9s var(--ease); }
+.room-row:hover .room-media img { transform: scale(1.035); }
+.room-name-tag {
+  position: absolute;
+  bottom: var(--space-2);
+  left: var(--space-2);
+  padding: 0.5rem 1rem;
+  background: var(--color-bg);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  color: var(--color-text);
+}
+.room-copy p { color: var(--color-text-muted); }
+
+/* Listas con viñeta de punto (servicios) */
+.room-features,
+.room-services { display: flex; flex-wrap: wrap; }
+.room-features { gap: 0.5rem 1.2rem; margin-bottom: var(--space-3); }
+.room-services { gap: 0.5rem 1.4rem; margin: var(--space-2) 0 var(--space-3); }
+.room-features li,
+.room-services li { position: relative; padding-left: 1rem; }
+.room-features li { font-size: 0.85rem; color: var(--color-text-muted); }
+.room-services li { font-size: 0.9rem; }
+.room-features li::before,
+.room-services li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.55em;
+  width: 5px; height: 5px;
+  background: var(--color-accent);
+  border-radius: 50%;
+}
+
+/* ---------- Ficha de habitación ---------- */
+/* Galería: las fotos 2–4 (la 1.ª es el banner) */
+.room-gallery-section { padding-block: var(--space-5) 0; }
+.room-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-2); }
+.room-gallery a { display: block; overflow: hidden; }
+.room-gallery img { width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 0.6s var(--ease); }
+.room-gallery a:hover img { transform: scale(1.04); }
+
+.room-detail { padding-top: var(--space-5); }
+.room-detail-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: var(--space-5); align-items: start; }
+.room-detail-info dl { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem 1.5rem; margin: var(--space-3) 0; }
+.room-detail-info dt { font-size: 0.85rem; color: var(--color-eyebrow); }
+.room-detail-info dd { margin: 0; font-size: 0.95rem; }
+
+/* Panel de reserva */
+.booking-widget {
+  position: sticky;
+  top: calc(var(--header-h) + var(--space-2));
+  padding: var(--space-3);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+}
+.booking-widget .price-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+.booking-widget .price { font-family: var(--font-display); font-size: 1.9rem; color: var(--color-accent); }
+.booking-widget .price small { font-family: var(--font-body); font-size: 0.85rem; color: var(--color-text-muted); }
+.booking-widget .availability { margin-top: var(--space-2); font-size: 0.85rem; color: var(--color-eyebrow); }
+.booking-widget .booking-hint { margin-bottom: 1.2rem; font-size: 0.9rem; color: var(--color-text-muted); }
+.booking-widget .note { margin-top: 1rem; }
+
+/* Otras habitaciones */
+.other-rooms { margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--color-border); }
+.other-rooms-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-2); }
+.other-room-card { display: block; }
+.other-room-card img { margin-bottom: 0.6rem; aspect-ratio: 4 / 3; object-fit: cover; }
+.other-room-card span { font-family: var(--font-display); font-size: 1.15rem; }
+
+@media (max-width: 980px) {
+  .room-row,
+  .room-row:nth-child(even) { grid-template-columns: 1fr; }
+  .room-row:nth-child(even) .room-media,
+  .room-row:nth-child(even) .room-copy { order: initial; }
+
+  .room-detail-grid { grid-template-columns: 1fr; }
+  .booking-widget { position: static; }
+  .other-rooms-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .room-gallery { grid-template-columns: repeat(2, 1fr); }
+  .room-gallery a:first-child { grid-column: span 2; }
+}
+
+/* Sección del listado: el banner ya es su propia sección */
+.rooms-section { padding-block: var(--space-4) var(--space-6); }

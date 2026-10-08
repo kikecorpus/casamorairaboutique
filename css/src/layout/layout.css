@@ -1,0 +1,65 @@
+/* ==========================================================================
+   LAYOUT — contenedores, ritmo vertical, utilidades y animación de entrada
+   ========================================================================== */
+
+/* Contenedor centrado */
+.wrap {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.wrap--narrow { max-width: 800px; margin-inline: auto; }
+
+/* Ritmo vertical por defecto. Los componentes de sección propios
+   (banner, cta-band…) fijan su padding con una clase, que gana por especificidad. */
+section { position: relative; padding-block: var(--space-6); }
+
+/* Cabecera de sección */
+.section-head { max-width: 640px; margin-bottom: var(--space-5); }
+.section-head--center { margin-inline: auto; text-align: center; }
+.section-head--center p { margin-inline: auto; }
+
+/* Bloque de texto centrado y estrecho */
+.text-center-narrow { max-width: 680px; margin-inline: auto; text-align: center; }
+.text-center-narrow p { margin-inline: auto; }
+
+/* Línea decorativa bajo los títulos */
+.divider {
+  width: 64px;
+  height: 2px;
+  margin: var(--space-2) 0 var(--space-3);
+  background: var(--color-accent);
+  border: none;
+}
+.divider--center { margin-inline: auto; }
+
+/* Fila de botones */
+.actions { margin-top: var(--space-3); }
+
+/* Solo para lectores de pantalla */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: var(--z-skip-link);
+  padding: 0.8rem 1.2rem;
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+.skip-link:focus { left: var(--space-2); top: var(--space-2); }
+
+/* Aparición progresiva (la activa js/main.js con IntersectionObserver) */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }

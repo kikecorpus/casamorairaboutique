@@ -1,0 +1,40 @@
+/* ==========================================================================
+   FEATURE — bloque texto + imagen en zigzag (Cartagena, Experiencia)
+   <article class="feature [feature--reverse]">
+     <div class="feature__copy">…</div><div class="feature__media"><img></div>
+   ========================================================================== */
+.feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  align-items: center;
+  margin-bottom: var(--space-6);
+}
+.feature:last-child { margin-bottom: 0; }
+
+.feature--reverse .feature__copy { order: 2; }
+.feature--reverse .feature__media { order: 1; }
+
+.feature__copy p { color: var(--color-text-muted); }
+.feature__media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 2px; }
+
+/* Frase breve bajo el título */
+.feature__tag {
+  margin-bottom: 0.8rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--color-accent);
+}
+.feature__sub {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--color-heading);
+}
+
+@media (max-width: 980px) {
+  .feature { grid-template-columns: 1fr; gap: var(--space-3); }
+  .feature--reverse .feature__copy,
+  .feature--reverse .feature__media { order: initial; }
+}

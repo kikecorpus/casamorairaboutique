@@ -1,0 +1,54 @@
+/* ==========================================================================
+   CTA BAND — franja de cierre con llamada a la acción
+   Sustituye a seccion-cierre, seccion-cierre-cartagena, seccion-dudas,
+   seccion-reservar-cta y a las franjas de color de la home.
+   Colores por variables; cada modificador solo las redefine.
+   ========================================================================== */
+.cta-band {
+  --band-bg: var(--color-surface);
+  --band-heading: var(--color-heading);
+  --band-text: var(--color-text);
+  --band-kicker: var(--color-eyebrow);
+  --band-lead: var(--color-heading);
+
+  padding-block: var(--space-6);
+  background: var(--band-bg);
+  color: var(--band-text);
+}
+.cta-band h2 { color: var(--band-heading); }
+.cta-band :where(p) { color: var(--band-text); }
+.cta-band .kicker { color: var(--band-kicker); }
+.cta-band .lead { color: var(--band-lead); }
+
+/* Frase final grande */
+.cta-band__lead {
+  margin-top: var(--space-3);
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.1vw, 1.6rem);
+  line-height: 1.4;
+  color: var(--band-lead);
+}
+
+/* Blanco con línea superior (FAQ, Recomendaciones) */
+.cta-band--plain { border-top: 1px solid var(--color-border); }
+
+/* Blanco con título terracota (Habitaciones en la home) */
+.cta-band--white { --band-heading: var(--color-accent); --band-kicker: var(--color-heading); }
+
+/* Terracota (Cartagena) */
+.cta-band--terracotta {
+  --band-bg: var(--color-accent);
+  --band-heading: var(--color-bg);
+  --band-text: var(--color-bg);
+  --band-kicker: var(--color-bg);
+  --band-lead: var(--color-bg);
+}
+
+/* Dorado (Experiencia) */
+.cta-band--gold {
+  --band-bg: var(--color-highlight);
+  --band-heading: var(--color-bg);
+  --band-kicker: var(--color-heading);
+  --band-lead: var(--color-heading);
+  --band-text: var(--color-heading);
+}

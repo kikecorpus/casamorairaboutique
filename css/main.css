@@ -1,0 +1,1321 @@
+/* ==========================================================
+   CASA MORAIRA — main.css  (ARCHIVO GENERADO, no editar)
+   Edita los módulos en css/src/ y ejecuta ./css/build-css.sh
+   ========================================================== */
+
+/* >>> src/base/tokens.css */
+/* ==========================================================================
+   TOKENS — única fuente de verdad de colores, tipografía, espaciado y capas.
+   Regla: los componentes usan tokens SEMÁNTICOS (--color-*), no la paleta
+   de marca directamente. Si cambia la marca, solo se toca este archivo.
+
+   Breakpoints (las media queries no admiten variables, se documentan aquí):
+     1100px  navegación colapsa a menú hamburguesa
+      980px  tablet: rejillas pasan a una columna
+      768px  móvil: banner apilado, espaciado reducido
+      520px  móvil pequeño
+   ========================================================================== */
+:root {
+  /* ---- Paleta de marca (Manual de Marca Casa Moraira) ---- */
+  --blanco-calido: #F1E9DB;        /* Crema */
+  --beige-arena: #DEC39A;          /* Arena cálida */
+  --beige-arena-suave: #F6EFE4;
+  --terracota: #B95736;
+  --terracota-oscuro: #9D4A2E;
+  --azul-mediterraneo: #174E6A;
+  --dorado-solar: #C98A27;
+  --azul-luna: #7F96A3;
+  --perla-lunar: #D8D2C5;
+  --verde-oliva: #6F7457;
+  --salvia-costera: #9BA58C;
+  --arcilla-rosada: #C88972;
+  --marron-madera: #765744;
+  --carbon: #2A2723;
+  --blanco: #FFFFFF;
+  --verde-valoracion: #003B2F;     /* Puntuación de reseñas */
+
+  /* ---- Tokens semánticos (usar estos en los componentes) ---- */
+  --color-bg: var(--blanco-calido);
+  --color-bg-soft: var(--beige-arena-suave);
+  --color-surface: var(--blanco);
+  --color-text: var(--carbon);
+  --color-text-muted: rgba(42, 39, 35, 0.65);
+  --color-heading: var(--azul-mediterraneo);
+  --color-eyebrow: var(--verde-oliva);
+  --color-accent: var(--terracota);
+  --color-accent-hover: var(--terracota-oscuro);
+  --color-highlight: var(--dorado-solar);
+  --color-border: rgba(42, 39, 35, 0.12);
+  --color-border-olive: rgba(111, 116, 87, 0.35);
+  --color-scrim: rgba(41, 38, 34, 0.32);
+  --color-card-glass: rgba(241, 233, 216, 0.95);
+  --color-header-glass: rgba(241, 233, 216, 0.94);
+
+  /* ---- Tipografía ---- */
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-body: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+
+  /* ---- Espaciado ---- */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.75rem;
+  --space-4: 3rem;
+  --space-5: 5rem;
+  --space-6: 8rem;
+
+  /* ---- Layout ---- */
+  --max-width: 1240px;
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+  --header-h: 5.25rem;             /* logo 52px + padding del header */
+  --banner-h: 40rem;               /* ALTURA ÚNICA de los banners de página */
+  --banner-h-sm: 20rem;            /* Altura de la imagen del banner en móvil */
+
+  /* ---- Movimiento ---- */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: 0.5s var(--ease);
+
+  /* ---- Capas ---- */
+  --z-nav-toggle: 2;
+  --z-header: 100;
+  --z-skip-link: 1000;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --space-6: 5rem;
+    --space-5: 3.5rem;
+    --space-4: 2.25rem;
+  }
+}
+
+/* >>> src/base/reset.css */
+/* ==========================================================================
+   RESET Y BASE
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; margin: 0; padding: 0; }
+button { font-family: inherit; cursor: pointer; }
+input, select { font-family: inherit; }
+
+/* Accesibilidad: foco visible siempre */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Respeta la preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* >>> src/base/typography.css */
+/* ==========================================================================
+   TIPOGRAFÍA
+   ========================================================================== */
+h1, h2, h3, h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--color-heading);
+}
+h1 { font-size: clamp(2.75rem, 6vw, 5rem); line-height: 1.05; }
+h2 { font-size: clamp(2.1rem, 4vw, 3.1rem); line-height: 1.15; }
+h3 { font-size: clamp(1.5rem, 2.4vw, 1.9rem); line-height: 1.25; }
+
+p { margin: 0 0 var(--space-2); max-width: 60ch; }
+
+/* Frase destacada en cursiva */
+.lead {
+  max-width: 42ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-style: italic;
+  color: var(--marron-madera);
+}
+
+/* Etiqueta pequeña sobre un título */
+.kicker {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--color-eyebrow);
+}
+
+/* Texto secundario / aclaraciones */
+.note {
+  margin-top: var(--space-2);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* Subtítulo con aspecto de h3 sin alterar la jerarquía del documento */
+.title-sm {
+  margin-bottom: var(--space-2);
+  font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+}
+
+/* >>> src/layout/layout.css */
+/* ==========================================================================
+   LAYOUT — contenedores, ritmo vertical, utilidades y animación de entrada
+   ========================================================================== */
+
+/* Contenedor centrado */
+.wrap {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.wrap--narrow { max-width: 800px; margin-inline: auto; }
+
+/* Ritmo vertical por defecto. Los componentes de sección propios
+   (banner, cta-band…) fijan su padding con una clase, que gana por especificidad. */
+section { position: relative; padding-block: var(--space-6); }
+
+/* Cabecera de sección */
+.section-head { max-width: 640px; margin-bottom: var(--space-5); }
+.section-head--center { margin-inline: auto; text-align: center; }
+.section-head--center p { margin-inline: auto; }
+
+/* Bloque de texto centrado y estrecho */
+.text-center-narrow { max-width: 680px; margin-inline: auto; text-align: center; }
+.text-center-narrow p { margin-inline: auto; }
+
+/* Línea decorativa bajo los títulos */
+.divider {
+  width: 64px;
+  height: 2px;
+  margin: var(--space-2) 0 var(--space-3);
+  background: var(--color-accent);
+  border: none;
+}
+.divider--center { margin-inline: auto; }
+
+/* Fila de botones */
+.actions { margin-top: var(--space-3); }
+
+/* Solo para lectores de pantalla */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: var(--z-skip-link);
+  padding: 0.8rem 1.2rem;
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+.skip-link:focus { left: var(--space-2); top: var(--space-2); }
+
+/* Aparición progresiva (la activa js/main.js con IntersectionObserver) */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* >>> src/components/buttons.css */
+/* ==========================================================================
+   BOTONES  —  .btn + una variante
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.9rem;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+/* Acción principal */
+.btn-primary { background: var(--color-accent); color: var(--color-bg);border-radius: 0.5rem; }
+.btn-primary:hover { background: var(--color-accent-hover); border-radius: 0.5rem;}
+
+/* Acción secundaria */
+.btn-outline { background: transparent; border-color: var(--color-text); color: var(--color-text);border-radius: 0.5rem; }
+.btn-outline:hover { border-color: var(--color-accent); color: var(--color-accent);border-radius: 0.5rem; }
+
+/* Sobre imagen / vídeo oscuro */
+.btn-ghost-light { background: var(--color-accent); border-color: var(--color-bg); color: var(--color-bg); border-radius: 0.5rem; }
+.btn-ghost-light:hover { background: var(--color-bg); color: var(--color-accent); border-color: var(--color-accent); border-radius: 0.5rem;}
+.btn-ghost-light2 { background: var(--color-highlight); border-color: var(--color-bg); color: var(--color-bg); border-radius: 0.5rem; }
+.btn-ghost-light2:hover { background: var(--color-bg); color: var(--color-highlight); border-color: var(--color-highlight); border-radius: 0.5rem;}
+
+/* Sobre fondos de color de marca (terracota, blanco) */
+.btn-gold { background: var(--color-highlight); border-color: var(--color-bg); color: var(--color-bg);border-radius: 0.5rem; }
+.btn-gold:hover { background: var(--color-accent); border-color: var(--color-highlight); color: var(--color-bg); border-radius: 0.5rem;}
+
+/* Tamaños */
+.btn-lg { padding: 1rem 2.2rem; font-size: 1.05rem; }
+.btn-block { width: 100%; justify-content: center; }
+
+/* >>> src/components/header.css */
+/* ==========================================================================
+   HEADER Y NAVEGACIÓN
+   Un único componente. El color de los enlaces se controla con variables:
+     .site-header          → texto oscuro (páginas interiores)
+     .site-header--light   → texto claro sobre vídeo (solo la home)
+     .is-scrolled          → fondo crema y texto oscuro (lo pone main.js)
+   ========================================================================== */
+.site-header {
+  --nav-color: var(--color-bg);
+  --toggle-color: var(--color-bg);
+  --cta-color: var(--color-bg);
+
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: var(--z-header);
+  padding-block: var(--space-2);
+  background: transparent;
+  transition: padding var(--transition);
+}
+.site-header--light {
+  --nav-color: var(--color-bg);
+  --toggle-color: var(--color-bg);
+  --cta-color: var(--color-bg);
+}
+.site-header.is-scrolled {
+  --nav-color: var(--color-text);
+  --toggle-color: var(--color-text);
+  --cta-color: var(--color-accent);
+
+  padding-block: 0.7rem;
+}
+
+/* Fondo "vidrio" al hacer scroll. Va en un pseudo-elemento y NO en el header:
+   un backdrop-filter en el propio header haría que el menú móvil (position:
+   fixed) se midiera contra el header y se encogiera a su altura. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-header-glass);
+  box-shadow: 0 1px 0 var(--color-border);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity var(--transition);
+  pointer-events: none;
+}
+.site-header.is-scrolled::before { opacity: 1; }
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  width: auto;
+  height: 52px;
+  transition: height var(--transition);
+}
+.logo img { display: block; width: auto; height: 100%; }
+.site-header.is-scrolled .logo { height: 44px; }
+
+/* Navegación (escritorio) */
+.main-nav { display: flex; align-items: center; gap: var(--space-4); }
+.main-nav ul { display: flex; gap: var(--space-3); }
+.main-nav a {
+  position: relative;
+  padding-bottom: 4px;
+  font-size: 0.92rem;
+  color: var(--nav-color);
+  transition: color var(--transition);
+}
+
+/* Subrayado animado y enlace activo */
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: 0;
+  height: 1px;
+  background: var(--color-accent);
+  transition: right var(--transition);
+}
+.main-nav a:hover::after,
+.main-nav a[aria-current="page"]::after { right: 0; }
+
+/* Botón "Reservar" del menú */
+.main-nav .nav-cta {
+  padding: 0.5rem 1.1rem;
+  border: 1px solid currentColor;
+  color: var(--cta-color);
+  transition: color var(--transition), border-color var(--transition);
+}
+.main-nav .nav-cta::after { display: none; }
+
+/* Iconos de redes */
+.nav-social { display: flex; }
+.nav-social ul { display: flex; gap: 1em; }
+.nav-social a::after { display: none; }
+.nav-social img { width: 1.5em; }
+
+/* Botón hamburguesa */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  background: none;
+  border: none;
+}
+.menu-toggle span {
+  width: 24px;
+  height: 2px;
+  background: var(--toggle-color);
+  transition: background var(--transition), transform var(--transition), opacity var(--transition);
+}
+.menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.site-header .menu-toggle[aria-expanded="true"] span { background: var(--color-text); }
+
+/* Ajuste fino en pantallas medianas con menú aún visible */
+@media (min-width: 1101px) and (max-width: 1280px) {
+  .main-nav ul { gap: 1.2rem; }
+  .main-nav a { font-size: 0.85rem; }
+}
+
+/* Menú hamburguesa (el menú tiene 9 enlaces) */
+@media (max-width: 1100px) {
+  .main-nav, .main-nav ul { display: none; }
+  .menu-toggle { display: flex; position: relative; z-index: var(--z-nav-toggle); }
+
+  .main-nav.is-open {
+    --nav-color: var(--color-text);
+    --cta-color: var(--color-accent);
+
+    display: flex;
+    position: fixed;
+    inset: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 6rem var(--gutter) var(--space-4);
+    overflow-y: auto;
+    background: var(--color-bg);
+  }
+  .main-nav.is-open ul { display: flex; flex-direction: column; gap: var(--space-2); }
+  .main-nav.is-open a { font-family: var(--font-display); font-size: 1.4rem; }
+  .main-nav.is-open .nav-cta { display: inline-block; }
+  .main-nav.is-open .nav-social ul { flex-direction: row; gap: 1.2rem; margin-top: var(--space-2); }
+}
+
+/* >>> src/components/footer.css */
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.site-footer {
+  padding-block: var(--space-5) var(--space-3);
+  background: var(--azul-mediterraneo);
+  color: var(--beige-arena-suave);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid rgba(241, 233, 216, 0.12);
+}
+
+.footer-logo-row { display: flex; align-items: center; gap: 0.7rem; }
+.footer-logo-row img { width: 30px; height: auto; }
+.footer-logo { margin: 0; font-family: var(--font-display); font-size: 1.6rem; color: var(--color-bg); }
+.footer-tag { max-width: 30ch; margin-top: var(--space-2); font-size: 0.9rem; color: rgba(241, 233, 216, 0.65); }
+
+.footer-col h4 {
+  margin-bottom: var(--space-2);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--beige-arena);
+}
+.footer-col ul { display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-col a { font-size: 0.9rem; color: rgba(241, 233, 216, 0.75); transition: color var(--transition); }
+.footer-col a:hover { color: var(--color-accent); }
+
+.footer-bottom {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: var(--space-3);
+  font-size: 0.8rem;
+  color: rgba(241, 233, 216, 0.5);
+}
+
+@media (max-width: 980px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+}
+@media (max-width: 768px) {
+  .footer-grid { grid-template-columns: 1fr; }
+}
+
+/* >>> src/components/banner.css */
+/* ==========================================================================
+   BANNER DE PÁGINA
+   Primera sección de TODAS las páginas interiores (La Casa, Habitaciones,
+   cada habitación, Experiencia, Cartagena, Recomendaciones, FAQ).
+   Todas miden lo mismo: --banner-h (tokens.css). La home usa .hero.
+
+   Estructura:
+     <section class="page-banner">
+       <div class="page-banner__media"><img …></div>
+       <div class="wrap"><div class="page-banner__card reveal"> … </div></div>
+     </section>
+   ========================================================================== */
+.page-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--banner-h);
+  /* El header es fixed: se reserva su altura para centrar la tarjeta debajo */
+  padding: calc(var(--header-h) + var(--space-2)) 0 var(--space-3);
+  background: var(--color-bg-soft);   /* color mientras carga la imagen */
+  isolation: isolate;
+}
+.page-banner > .wrap { width: 100%; }
+
+/* Imagen de fondo */
+.page-banner__media { position: absolute; inset: 0; z-index: -1; }
+.page-banner__media img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Degradado suave arriba para que el menú se lea sobre cualquier foto */
+.page-banner__media::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: calc(var(--header-h) * 1.5);
+  background: linear-gradient(to bottom, rgba(6, 6, 5, 0.5), transparent);
+  pointer-events: none;
+}
+
+/* Tarjeta de texto */
+.page-banner__card {
+  max-width: 26rem;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-card-glass);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(8px);
+}
+.page-banner__card h1 { font-size: clamp(1.9rem, 3.4vw, 2.75rem); line-height: 1.15; }
+.page-banner__card .breadcrumb { margin-bottom: var(--space-2); font-size: 0.85rem; color: var(--color-eyebrow); }
+.page-banner__card .breadcrumb a { text-decoration: underline; text-underline-offset: 3px; }
+.page-banner__card > :last-child { margin-bottom: 0; }
+
+/* Móvil: la imagen conserva la MISMA altura en todas las páginas y la
+   tarjeta se apila debajo (solapando un poco), así el texto nunca se corta. */
+@media (max-width: 768px) {
+  .page-banner {
+    display: block;
+    min-height: 0;
+    padding: 0 0 var(--space-4);
+    background: none;
+    isolation: auto;
+  }
+  .page-banner__media {
+    position: relative;
+    inset: auto;
+    z-index: auto;
+    height: var(--banner-h-sm);
+  }
+  .page-banner__card {
+    position: relative;
+    max-width: none;
+    margin-top: calc(var(--space-4) * -1);
+    padding: var(--space-3);
+  }
+}
+  .page-banner__card {
+    margin-inline: auto;   /* centra la tarjeta horizontalmente */
+  }
+
+  .page-banner__card {
+  text-align: center;
+}
+.page-banner__card .divider {
+  margin-inline: auto;   /* centra la línea terracota */
+}
+.page-banner__card p {
+  margin-inline: auto;   /* centra los párrafos, que tienen ancho máximo */
+}
+/* >>> src/components/feature.css */
+/* ==========================================================================
+   FEATURE — bloque texto + imagen en zigzag (Cartagena, Experiencia)
+   <article class="feature [feature--reverse]">
+     <div class="feature__copy">…</div><div class="feature__media"><img></div>
+   ========================================================================== */
+.feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  align-items: center;
+  margin-bottom: var(--space-6);
+}
+.feature:last-child { margin-bottom: 0; }
+
+.feature--reverse .feature__copy { order: 2; }
+.feature--reverse .feature__media { order: 1; }
+
+.feature__copy p { color: var(--color-text-muted); }
+.feature__media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 2px; }
+
+/* Frase breve bajo el título */
+.feature__tag {
+  margin-bottom: 0.8rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--color-accent);
+}
+.feature__sub {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--color-heading);
+}
+
+@media (max-width: 980px) {
+  .feature { grid-template-columns: 1fr; gap: var(--space-3); }
+  .feature--reverse .feature__copy,
+  .feature--reverse .feature__media { order: initial; }
+}
+
+/* >>> src/components/cta-band.css */
+/* ==========================================================================
+   CTA BAND — franja de cierre con llamada a la acción
+   Sustituye a seccion-cierre, seccion-cierre-cartagena, seccion-dudas,
+   seccion-reservar-cta y a las franjas de color de la home.
+   Colores por variables; cada modificador solo las redefine.
+   ========================================================================== */
+.cta-band {
+  --band-bg: var(--color-surface);
+  --band-heading: var(--color-heading);
+  --band-text: var(--color-text);
+  --band-kicker: var(--color-eyebrow);
+  --band-lead: var(--color-heading);
+
+  padding-block: var(--space-6);
+  background: var(--band-bg);
+  color: var(--band-text);
+}
+.cta-band h2 { color: var(--band-heading); }
+.cta-band :where(p) { color: var(--band-text); }
+.cta-band .kicker { color: var(--band-kicker); }
+.cta-band .lead { color: var(--band-lead); }
+
+/* Frase final grande */
+.cta-band__lead {
+  margin-top: var(--space-3);
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.1vw, 1.6rem);
+  line-height: 1.4;
+  color: var(--band-lead);
+}
+
+/* Blanco con línea superior (FAQ, Recomendaciones) */
+.cta-band--plain { border-top: 1px solid var(--color-border); }
+
+/* Blanco con título terracota (Habitaciones en la home) */
+.cta-band--white { --band-heading: var(--color-accent); --band-kicker: var(--color-heading); }
+
+/* Terracota (Cartagena) */
+.cta-band--terracotta {
+  --band-bg: var(--color-accent);
+  --band-heading: var(--color-bg);
+  --band-text: var(--color-bg);
+  --band-kicker: var(--color-bg);
+  --band-lead: var(--color-bg);
+}
+
+/* Dorado (Experiencia) */
+.cta-band--gold {
+  --band-bg: var(--color-highlight);
+  --band-heading: var(--color-bg);
+  --band-kicker: var(--color-heading);
+  --band-lead: var(--color-heading);
+  --band-text: var(--color-heading);
+}
+
+/* >>> src/components/accordion.css */
+/* ==========================================================================
+   FAQ — acordeón con <details>
+   ========================================================================== */
+.faq { background: var(--color-bg); }
+.faq__list { display: flex; flex-direction: column; gap: var(--space-3); }
+
+.faq__item {
+  overflow: hidden;
+  background: var(--color-bg-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  transition: border-color var(--transition);
+}
+.faq__item[open] { border-color: var(--color-accent); }
+
+.faq__question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--color-heading);
+  cursor: pointer;
+  list-style: none;            /* oculta la flecha nativa */
+  user-select: none;
+}
+.faq__question::-webkit-details-marker { display: none; }  /* Safari */
+
+.faq__icon {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--color-accent);
+  transition: transform var(--transition);
+}
+.faq__item[open] .faq__icon { transform: rotate(45deg); }   /* + se vuelve × */
+
+.faq__answer {
+  padding: 0 var(--space-4) var(--space-4);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+.faq__answer p { margin: 0; }
+
+@media (max-width: 768px) {
+  .faq__question { padding: var(--space-3); font-size: 1.1rem; }
+  .faq__answer { padding: 0 var(--space-3) var(--space-3); }
+}
+
+/* >>> src/components/info-card.css */
+/* ==========================================================================
+   INFO CARD — tarjetas de información práctica (Recomendaciones)
+   ========================================================================== */
+.info-guide { background: var(--color-bg); }
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+.info-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4);
+  background: var(--color-bg-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  transition: transform var(--transition), border-color var(--transition);
+}
+.info-card:hover { transform: translateY(-3px); border-color: var(--color-accent); }
+.info-card--wide { grid-column: 1 / -1; background: #EAE3D2; }
+
+.info-card__head h3 { margin-bottom: var(--space-2); font-size: 1.35rem; color: var(--color-heading); }
+.info-card__body p { margin-bottom: 0.8rem; font-size: 0.98rem; color: var(--color-text-muted); }
+.info-card__body p:last-child { margin-bottom: 0; }
+.info-card__body .info-card__note { font-style: italic; color: var(--color-eyebrow); }
+
+@media (max-width: 768px) {
+  .info-grid { grid-template-columns: 1fr; gap: var(--space-3); }
+}
+
+/* >>> src/components/details.css */
+/* ==========================================================================
+   DETAILS — cuadrícula de 6 detalles numerados (Experiencia)
+   ========================================================================== */
+.details {
+  background: var(--color-bg-soft);
+  border-block: 1px solid var(--color-border);
+}
+.details__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+.details__item {
+  padding: var(--space-3);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  text-align: center;
+  transition: transform var(--transition), border-color var(--transition);
+}
+.details__item:hover { transform: translateY(-4px); border-color: var(--color-accent); }
+.details__item span {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-highlight);
+}
+.details__item h4 { margin: 0; font-size: 1.15rem; }
+
+@media (max-width: 980px) { .details__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .details__grid { grid-template-columns: 1fr; } }
+
+/* >>> src/components/gallery-split.css */
+/* ==========================================================================
+   GALLERY SPLIT — texto + galería de 3 fotos (La Casa: cocina y rincones)
+   ========================================================================== */
+.gallery-split {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: var(--space-4);
+  align-items: center;
+}
+.gallery-split__copy p { color: var(--color-text-muted); }
+
+.gallery-split__gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+.gallery-split__gallery img { object-fit: cover; }
+.gallery-split__gallery img:first-child { grid-row: span 2; aspect-ratio: 3 / 4; }
+.gallery-split__gallery img:nth-child(n+2) { aspect-ratio: 4 / 3; }
+
+@media (max-width: 980px) {
+  .gallery-split { grid-template-columns: 1fr; }
+  .gallery-split__gallery { order: -1; }
+}
+
+/* >>> src/components/video-band.css */
+/* ==========================================================================
+   VIDEO BAND — franja a sangre con vídeo de fondo (La Casa: piscina)
+   ========================================================================== */
+.video-band {
+  display: flex;
+  align-items: center;
+  min-height: 78vh;
+  padding-top: 0;                 /* enlaza con la sección anterior */
+  overflow: hidden;               /* el vídeo no debe sobresalir */
+  color: var(--color-bg);
+}
+.video-band__video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+}
+/* Capa oscura para contraste */
+.video-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--color-scrim);
+}
+.video-band .wrap { position: relative; z-index: 2; }
+
+.video-band__content { max-width: 560px; }
+.video-band__content h2 { color: var(--color-bg); }
+.video-band__content .kicker { color: var(--beige-arena); }
+.video-band__content .lead { color: var(--beige-arena-suave); }
+
+/* >>> src/components/story.css */
+/* ==========================================================================
+   STORY — bloque narrativo centrado (La Casa: el origen del nombre)
+   ========================================================================== */
+.story { background: var(--color-bg-soft); }
+
+.story__lead {
+  margin-bottom: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.4;
+  color: var(--color-heading);
+}
+.story__highlight {
+  margin-top: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+/* >>> src/components/reviews.css */
+/* ==========================================================================
+   REVIEWS — valoración de Booking.com y comentarios destacados (home)
+   ========================================================================== */
+.reviews { background: var(--color-bg-soft); }
+
+.reviews__header { max-width: 720px; margin: 0 auto 4rem; text-align: center; }
+.reviews__header h2 { margin: 0 0 1rem; }
+.reviews__intro { max-width: 600px; margin: 0 auto; line-height: 1.7; color: var(--color-text-muted); }
+
+/* Perfil + puntuación */
+.reviews__summary {
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+.reviews__profile,
+.reviews__score,
+.reviews__item {
+  background: var(--color-surface);
+  border-radius: 16px;
+}
+.reviews__profile,
+.reviews__score { padding: 2rem; }
+
+.reviews__profile { display: flex; align-items: center; gap: 2rem; }
+.reviews__profile-image img { width: 120px; height: 120px; object-fit: cover; border-radius: 50%; }
+.reviews__profile-content h3 { margin: 0 0 1rem; }
+.reviews__profile-content p { margin: 0 0 0.8rem; font-size: 0.95rem; line-height: 1.65; color: var(--color-text-muted); }
+
+.reviews__label,
+.reviews__platform {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.reviews__score { display: flex; align-items: center; gap: 1.5rem; }
+.reviews__score-number {
+  min-width: 110px;
+  padding: 1.2rem;
+  border-radius: 12px;
+  background: var(--verde-valoracion);
+  color: var(--blanco);
+  text-align: center;
+}
+.reviews__score-number strong { display: block; font-size: 3rem; font-weight: 500; line-height: 1; }
+.reviews__score-number span { display: block; margin-top: 0.5rem; font-size: 0.8rem; }
+.reviews__score-info h3 { margin: 0 0 0.6rem; }
+.reviews__score-info p { margin: 0 0 1rem; font-size: 0.9rem; line-height: 1.5; color: var(--color-text-muted); }
+.reviews__score-meta { display: flex; gap: 1rem; font-size: 0.8rem; color: var(--color-text-muted); }
+
+/* Comentarios */
+.reviews__list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
+.reviews__item { padding: 1.7rem; }
+.reviews__item-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.3rem; }
+.reviews__item-header strong { display: block; }
+.reviews__item-header span { display: block; margin-top: 0.2rem; font-size: 0.8rem; color: var(--color-text-muted); }
+.reviews__item-rating {
+  padding: 0.45rem 0.6rem;
+  border-radius: 6px;
+  background: var(--verde-valoracion);
+  color: var(--blanco);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.reviews__item p { margin: 0; font-size: 0.92rem; line-height: 1.7; color: var(--color-text-muted); }
+
+/* Enlace a Booking */
+.reviews__action { margin-top: 2.5rem; text-align: center; }
+.reviews__button {
+  display: inline-block;
+  padding: 0.9rem 1.5rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 6px;
+  color: var(--color-accent);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.reviews__button:hover { background: var(--color-accent); color: var(--blanco); }
+.reviews__updated { margin: 0.8rem auto 0; font-size: 0.75rem; color: var(--color-text-muted); text-align: center; }
+
+@media (max-width: 768px) {
+  .reviews__summary,
+  .reviews__list { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .reviews__profile,
+  .reviews__score { flex-direction: column; text-align: center; }
+  .reviews__score-meta { justify-content: center; }
+}
+
+/* >>> src/components/booking-form.css */
+/* ==========================================================================
+   BOOKING FORM — buscador de disponibilidad
+   La sección está comentada en index.html a la espera de un motor de
+   reservas, pero js/main.js ya genera .result-card: se conserva el estilo.
+   ========================================================================== */
+.booking { background: var(--color-bg-soft); }
+
+.booking-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) auto;
+  gap: var(--space-2);
+  align-items: end;
+  padding: var(--space-3);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+}
+.booking-form .btn { height: fit-content; white-space: nowrap; }
+
+.field { display: flex; flex-direction: column; gap: 0.4rem; }
+.field label { font-size: 0.8rem; color: var(--color-eyebrow); }
+.field input,
+.field select {
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+.field input:focus,
+.field select:focus { border-color: var(--color-accent); }
+
+.booking-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+.booking-results[hidden] { display: none; }
+
+.result-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+}
+.result-card h4 { font-size: 1.15rem; }
+.result-card .price { font-family: var(--font-display); font-size: 1.3rem; color: var(--color-accent); }
+
+@media (max-width: 980px) {
+  .booking-form { grid-template-columns: 1fr 1fr; }
+  .booking-form .btn { grid-column: 1 / -1; justify-content: center; }
+}
+@media (max-width: 768px) {
+  .field input, .field select { font-size: 1rem; }   /* evita el zoom de iOS */
+}
+@media (max-width: 520px) {
+  .booking-form { grid-template-columns: 1fr; }
+  .booking-form .btn { width: 100%; }
+}
+
+/* >>> src/pages/home.css */
+/* ==========================================================================
+   HOME — hero, presentación, experiencia y ubicación
+   (Las demás páginas usan .page-banner en lugar de .hero)
+   ========================================================================== */
+
+/* ---------- Hero a pantalla completa con vídeo ---------- */
+.hero {
+  display: flex;
+  align-items: flex-end;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-bottom: clamp(3rem, 7vh, 6rem);
+  background: transparent;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero .wrap { position: relative; z-index: 1; width: 100%; }
+.hero p { text-align: left; }
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(41, 38, 34, 0.6) 0%, rgba(41, 38, 34, 0.08) 42%, rgba(41, 38, 34, 0.75) 100%);
+}
+
+.hero-content { max-width: 720px; color: var(--color-bg); }
+
+.hero-mark {
+  width: clamp(7rem, 10vw, 10rem);
+  height: auto;
+  margin-bottom: 0.8rem;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.55));
+}
+.hero-eyebrow {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-bg);
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
+}
+.hero-content h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(3.2rem, 7vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: 0.04em;
+  color: var(--color-bg);
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.8));
+}
+/* Frase principal */
+.hero-content > p:not(.hero-eyebrow):not(.lead) {
+  max-width: 600px;
+  margin: 0 0 1.2rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.3;
+  color: var(--color-bg);
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
+}
+/* Descripciones */
+.hero-content .lead {
+  max-width: 620px;
+  margin: 0.65rem 0;
+  font-family: var(--font-body);
+  font-size: clamp(0.88rem, 1.15vw, 1rem);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  color: var(--beige-arena-suave);
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.85));
+}
+.hero .actions { margin-top: 1.6rem; filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.2)); }
+
+.scroll-hint {
+  position: absolute;
+  right: var(--gutter);
+  bottom: var(--space-3);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  writing-mode: vertical-rl;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--color-bg);
+  opacity: 0.85;
+}
+.scroll-hint::after { content: ""; width: 1px; height: 44px; background: currentColor; }
+
+/* ---------- Presentación ---------- */
+.intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  align-items: center;
+}
+.intro-media { position: relative; }
+.intro-media img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.intro-media::before {           /* marco decorativo */
+  content: "";
+  position: absolute;
+  top: -18px; left: -18px;
+  z-index: -1;
+  width: 60%; height: 60%;
+  border: 1px solid var(--color-accent);
+}
+.intro-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+.intro-feature { display: flex; align-items: center; gap: 0.75rem; }
+.intro-feature .num { font-family: var(--font-display); font-size: 1.9rem; color: var(--color-highlight); }
+.intro-feature p { margin: 0; font-size: 0.95rem; color: var(--color-text-muted); }
+
+/* ---------- Experiencia (tira de 5 fotos) ---------- */
+.experience-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-2); }
+.experience-strip figure { margin: 0; }
+.experience-strip img { aspect-ratio: 1 / 1.1; object-fit: cover; filter: saturate(0.95); }
+.experience-strip figcaption {
+  margin-top: 0.6rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+.experience-copy { max-width: 680px; margin-top: var(--space-4); }
+.experience-copy p { color: var(--color-text-muted); }
+
+/* ---------- Ubicación ---------- */
+.location { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+.location iframe { width: 100%; height: 100%; min-height: 320px; border: 0; }
+.location-list { display: flex; flex-direction: column; gap: var(--space-3); }
+.location-item { display: flex; gap: var(--space-2); }
+.location-item .dist { min-width: 3.5rem; font-family: var(--font-display); font-size: 1.4rem; color: var(--color-heading); }
+.location-item p { margin: 0; font-size: 0.95rem; color: var(--color-text-muted); }
+
+@media (max-width: 980px) {
+  .intro, .location { grid-template-columns: 1fr; }
+  .experience-strip { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .scroll-hint { display: none; }
+}
+
+/* >>> src/pages/rooms.css */
+/* ==========================================================================
+   HABITACIONES — listado y ficha de cada habitación
+   ========================================================================== */
+
+/* ---------- Listado (habitaciones.html) ---------- */
+.room-row {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-5);
+  align-items: center;
+  padding-block: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+.room-row:nth-child(even) { grid-template-columns: 0.9fr 1.1fr; }
+.room-row:nth-child(even) .room-media { order: 2; }
+.room-row:nth-child(even) .room-copy { order: 1; }
+
+.room-media { position: relative; overflow: hidden; }
+.room-media img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; transition: transform 0.9s var(--ease); }
+.room-row:hover .room-media img { transform: scale(1.035); }
+.room-name-tag {
+  position: absolute;
+  bottom: var(--space-2);
+  left: var(--space-2);
+  padding: 0.5rem 1rem;
+  background: var(--color-bg);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  color: var(--color-text);
+}
+.room-copy p { color: var(--color-text-muted); }
+
+/* Listas con viñeta de punto (servicios) */
+.room-features,
+.room-services { display: flex; flex-wrap: wrap; }
+.room-features { gap: 0.5rem 1.2rem; margin-bottom: var(--space-3); }
+.room-services { gap: 0.5rem 1.4rem; margin: var(--space-2) 0 var(--space-3); }
+.room-features li,
+.room-services li { position: relative; padding-left: 1rem; }
+.room-features li { font-size: 0.85rem; color: var(--color-text-muted); }
+.room-services li { font-size: 0.9rem; }
+.room-features li::before,
+.room-services li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.55em;
+  width: 5px; height: 5px;
+  background: var(--color-accent);
+  border-radius: 50%;
+}
+
+/* ---------- Ficha de habitación ---------- */
+/* Galería: las fotos 2–4 (la 1.ª es el banner) */
+.room-gallery-section { padding-block: var(--space-5) 0; }
+.room-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-2); }
+.room-gallery a { display: block; overflow: hidden; }
+.room-gallery img { width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 0.6s var(--ease); }
+.room-gallery a:hover img { transform: scale(1.04); }
+
+.room-detail { padding-top: var(--space-5); }
+.room-detail-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: var(--space-5); align-items: start; }
+.room-detail-info dl { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem 1.5rem; margin: var(--space-3) 0; }
+.room-detail-info dt { font-size: 0.85rem; color: var(--color-eyebrow); }
+.room-detail-info dd { margin: 0; font-size: 0.95rem; }
+
+/* Panel de reserva */
+.booking-widget {
+  position: sticky;
+  top: calc(var(--header-h) + var(--space-2));
+  padding: var(--space-3);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+}
+.booking-widget .price-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+.booking-widget .price { font-family: var(--font-display); font-size: 1.9rem; color: var(--color-accent); }
+.booking-widget .price small { font-family: var(--font-body); font-size: 0.85rem; color: var(--color-text-muted); }
+.booking-widget .availability { margin-top: var(--space-2); font-size: 0.85rem; color: var(--color-eyebrow); }
+.booking-widget .booking-hint { margin-bottom: 1.2rem; font-size: 0.9rem; color: var(--color-text-muted); }
+.booking-widget .note { margin-top: 1rem; }
+
+/* Otras habitaciones */
+.other-rooms { margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--color-border); }
+.other-rooms-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-2); }
+.other-room-card { display: block; }
+.other-room-card img { margin-bottom: 0.6rem; aspect-ratio: 4 / 3; object-fit: cover; }
+.other-room-card span { font-family: var(--font-display); font-size: 1.15rem; }
+
+@media (max-width: 980px) {
+  .room-row,
+  .room-row:nth-child(even) { grid-template-columns: 1fr; }
+  .room-row:nth-child(even) .room-media,
+  .room-row:nth-child(even) .room-copy { order: initial; }
+
+  .room-detail-grid { grid-template-columns: 1fr; }
+  .booking-widget { position: static; }
+  .other-rooms-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .room-gallery { grid-template-columns: repeat(2, 1fr); }
+  .room-gallery a:first-child { grid-column: span 2; }
+}
+
+/* Sección del listado: el banner ya es su propia sección */
+.rooms-section { padding-block: var(--space-4) var(--space-6); }

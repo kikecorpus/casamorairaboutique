@@ -1,0 +1,46 @@
+/* ==========================================================================
+   TIPOGRAFÍA
+   ========================================================================== */
+h1, h2, h3, h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--color-heading);
+}
+h1 { font-size: clamp(2.75rem, 6vw, 5rem); line-height: 1.05; }
+h2 { font-size: clamp(2.1rem, 4vw, 3.1rem); line-height: 1.15; }
+h3 { font-size: clamp(1.5rem, 2.4vw, 1.9rem); line-height: 1.25; }
+
+p { margin: 0 0 var(--space-2); max-width: 60ch; }
+
+/* Frase destacada en cursiva */
+.lead {
+  max-width: 42ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-style: italic;
+  color: var(--marron-madera);
+}
+
+/* Etiqueta pequeña sobre un título */
+.kicker {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--color-eyebrow);
+}
+
+/* Texto secundario / aclaraciones */
+.note {
+  margin-top: var(--space-2);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* Subtítulo con aspecto de h3 sin alterar la jerarquía del documento */
+.title-sm {
+  margin-bottom: var(--space-2);
+  font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+}
