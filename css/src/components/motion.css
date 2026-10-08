@@ -1,0 +1,160 @@
+/* ==========================================================================
+   MOTION — animaciones de entrada y de scroll
+   Se carga AL FINAL del manifest para poder completar .reveal (layout.css).
+   Las clases las activa js/main.js (IntersectionObserver); el hero y los
+   banners animan solo con CSS. Con prefers-reduced-motion (reset.css) todo
+   se muestra al instante.
+   ========================================================================== */
+
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);   /* frenada suave, más "premium" */
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes hero-zoom {
+  from { transform: scale(1.12); }
+  to   { transform: scale(1); }
+}
+@keyframes hint-line {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: top; }
+  51%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ==========================================================================
+   1) REVEAL — variantes y escalonado (complementa .reveal de layout.css)
+   data-reveal="left | right | zoom | fade"     --reveal-delay: 0.2s
+   ========================================================================== */
+.reveal {
+  transition:
+    opacity 0.9s var(--ease-out),
+    transform 0.9s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0s);
+}
+.reveal[data-reveal="left"]  { transform: translateX(-48px); }
+.reveal[data-reveal="right"] { transform: translateX(48px); }
+.reveal[data-reveal="zoom"]  { transform: scale(0.94); }
+.reveal[data-reveal="fade"]  { transform: none; }
+.reveal[data-reveal].is-visible { opacity: 1; transform: none; }
+
+/* ==========================================================================
+   2) IMÁGENES CON "CORTINA" — se destapan de abajo hacia arriba + zoom out
+   (se aplica a .intro-media img y .feature__media img desde main.js)
+   ========================================================================== */
+.mask-reveal {
+  clip-path: inset(100% 0 0 0);
+  transform: scale(1.18);
+  transition:
+    clip-path 1.3s var(--ease-out),
+    transform 1.6s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0.15s);
+}
+.mask-reveal.is-visible { clip-path: inset(0); transform: scale(1); }
+
+/* ==========================================================================
+   3) HERO (home) — entrada escalonada solo con CSS
+   ========================================================================== */
+.hero-video { animation: hero-zoom 2.8s var(--ease-out) both; }
+
+.hero-content > * { animation: rise 1.1s var(--ease-out) both; }
+.hero-content > :nth-child(1) { animation-delay: 0.20s; }   /* marca */
+.hero-content > :nth-child(2) { animation-delay: 0.40s; }   /* eyebrow */
+.hero-content > :nth-child(3) { animation-delay: 0.60s; }   /* h1 */
+.hero-content > :nth-child(4) { animation-delay: 0.85s; }   /* frase */
+.hero-content > :nth-child(5) { animation-delay: 1.00s; }   /* lead 1 */
+.hero-content > :nth-child(6) { animation-delay: 1.15s; }   /* lead 2 */
+.hero-content > :nth-child(7) { animation-delay: 1.35s; }   /* botón */
+
+/* Parallax: main.js escribe --hero-p (0 → 1) mientras se baja el hero */
+.hero .wrap {
+  transform: translateY(calc(var(--hero-p, 0) * 70px));
+  opacity: calc(1 - var(--hero-p, 0) * 1.1);
+  will-change: transform, opacity;
+}
+
+.scroll-hint { animation: rise 1s var(--ease-out) 1.8s both; }
+.scroll-hint::after { animation: hint-line 2.4s var(--ease) 2.4s infinite; }
+
+/* ==========================================================================
+   4) BANNERS DE PÁGINA — zoom suave de la foto + tarjeta escalonada
+   ========================================================================== */
+.page-banner__media { overflow: hidden; }
+.page-banner__media img { animation: hero-zoom 2.4s var(--ease-out) both; }
+
+.page-banner__card.is-visible > * { animation: rise 0.9s var(--ease-out) both; }
+.page-banner__card.is-visible > :nth-child(1) { animation-delay: 0.10s; }
+.page-banner__card.is-visible > :nth-child(2) { animation-delay: 0.22s; }
+.page-banner__card.is-visible > :nth-child(3) { animation-delay: 0.34s; }
+.page-banner__card.is-visible > :nth-child(4) { animation-delay: 0.46s; }
+.page-banner__card.is-visible > :nth-child(5) { animation-delay: 0.58s; }
+
+/* ==========================================================================
+   5) LÍNEA .divider — se "dibuja" cuando su bloque aparece
+   ========================================================================== */
+.reveal .divider {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1s var(--ease-out) 0.35s;
+}
+.reveal .divider--center { transform-origin: center; }
+.reveal.is-visible .divider,
+.reveal.is-visible.divider { transform: scaleX(1); }
+
+/* ==========================================================================
+   6) HOME — presentación, experiencia, ubicación
+   ========================================================================== */
+/* Marco terracota que se dibuja detrás de la foto */
+.intro-media::before {
+  transform: scale(0);
+  transform-origin: top left;
+  transition: transform 1.2s var(--ease-out) 0.6s;
+}
+.intro-media.is-visible::before { transform: scale(1); }
+
+/* Números 01-04: pequeño "pop" al entrar */
+.intro-feature .num { display: inline-block; transition: transform 0.7s var(--ease-out); }
+.intro-feature.reveal:not(.is-visible) .num { transform: scale(0.4); }
+
+/* Tira de experiencia: cascada + zoom al pasar el cursor */
+.experience-strip figure { overflow: hidden; }
+.experience-strip img { transition: transform 1.1s var(--ease-out); }
+.experience-strip figure:hover img { transform: scale(1.07); }
+.experience-strip figcaption { transition: transform 0.6s var(--ease-out); }
+.experience-strip figure:hover figcaption { transform: translateX(6px); }
+
+/* Ubicación: las distancias entran una a una */
+.location-item .dist { transition: color var(--transition); }
+.location-item:hover .dist { color: var(--color-accent); }
+
+/* ==========================================================================
+   7) RESEÑAS — tarjetas en cascada
+   ========================================================================== */
+.reviews__score-number strong { font-variant-numeric: tabular-nums; }
+
+/* ==========================================================================
+   8) Tarjetas de otras habitaciones (fichas)
+   ========================================================================== */
+.other-room-card { overflow: hidden; }
+.other-room-card img { transition: transform 0.9s var(--ease-out); }
+.other-room-card:hover img { transform: scale(1.06); }
+
+/* ==========================================================================
+   Móvil: desplazamientos más cortos para que no se salgan de pantalla
+   ========================================================================== */
+@media (max-width: 768px) {
+  .reveal[data-reveal="left"],
+  .reveal[data-reveal="right"] { transform: translateY(24px); }
+  .hero .wrap { transform: none; opacity: 1; }   /* sin parallax en móvil */
+}
+
+/* Accesibilidad: sin movimiento, tampoco hay esperas (reset.css solo acorta duraciones) */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .mask-reveal { transition-delay: 0s !important; }
+  .hero-content > *, .scroll-hint, .page-banner__card > * { animation-delay: 0s !important; }
+  .hero .wrap { transform: none; opacity: 1; }
+}
