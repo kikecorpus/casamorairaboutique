@@ -273,3 +273,60 @@
     });
   }
 })();
+
+
+/* GALLERY SLIDER — botones, puntos, contador y teclado.
+   Cargar con defer (o pegar dentro de js/main.js). */
+(function () {
+  document.querySelectorAll('[data-gallery]').forEach(function (root) {
+    var track  = root.querySelector('.gallery-slider__track');
+    var slides = Array.from(track.children);
+    var prev   = root.querySelector('.gallery-slider__btn--prev');
+    var next   = root.querySelector('.gallery-slider__btn--next');
+    var dotsEl = root.querySelector('.gallery-slider__dots');
+    var count  = root.querySelector('.gallery-slider__count');
+    var index  = 0;
+
+    var dots = slides.map(function (_, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'gallery-slider__dot';
+      b.setAttribute('aria-label', 'Ir a la imagen ' + (i + 1));
+      b.addEventListener('click', function () { goTo(i); });
+      dotsEl.appendChild(b);
+      return b;
+    });
+
+    function goTo(i) {
+      i = Math.max(0, Math.min(slides.length - 1, i));
+      track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+    }
+
+    function update(i) {
+      index = i;
+      dots.forEach(function (d, n) { d.setAttribute('aria-current', n === i ? 'true' : 'false'); });
+      prev.disabled = i === 0;
+      next.disabled = i === slides.length - 1;
+      count.textContent = (i + 1) + ' / ' + slides.length;
+    }
+
+    // Detecta la slide visible (también al hacer swipe)
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) update(slides.indexOf(e.target));
+        });
+      }, { root: track, threshold: 0.6 });
+      slides.forEach(function (s) { io.observe(s); });
+    }
+
+    prev.addEventListener('click', function () { goTo(index - 1); });
+    next.addEventListener('click', function () { goTo(index + 1); });
+    root.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft')  { goTo(index - 1); }
+      if (e.key === 'ArrowRight') { goTo(index + 1); }
+    });
+
+    update(0);
+  });
+})();
