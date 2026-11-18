@@ -1,0 +1,12 @@
+/* imagen de desayuno */
+
+/* Centra la imagen y su texto de la primera casilla (desayuno) */
+.experience-strip figure:first-child {
+  text-align: center; /* Centra el texto del figcaption y elementos inline */
+}
+
+.experience-strip figure:first-child img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; /* Esto centra la imagen horizontalmente en su casilla */
+}

@@ -18,3 +18,6 @@ components/reviews.css
 components/booking-form.css
 pages/home.css
 pages/rooms.css
+components/motion.css
+components/gallery-slider.css
+pages/experience-strip.css

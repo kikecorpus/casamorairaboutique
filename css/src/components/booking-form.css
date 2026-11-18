@@ -1,7 +1,6 @@
 /* ==========================================================================
    BOOKING FORM — buscador de disponibilidad
-   La sección está comentada en index.html a la espera de un motor de
-   reservas, pero js/main.js ya genera .result-card: se conserva el estilo.
+   Lo gestiona js/reservas.js (conectado a /api -> Stays).
    ========================================================================== */
 .booking { background: var(--color-bg-soft); }
 
@@ -31,7 +30,7 @@
 
 .booking-results {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: 1fr;
   gap: var(--space-2);
   margin-top: var(--space-4);
 }
@@ -49,8 +48,29 @@
 .result-card h4 { font-size: 1.15rem; }
 .result-card .price { font-family: var(--font-display); font-size: 1.3rem; color: var(--color-accent); }
 
+/* Detalle de la tarjeta y panel de datos del huésped */
+.result-card__detail { margin: 0; color: var(--color-text-muted); font-size: 0.85rem; }
+.result-card__action { text-align: right; }
+.result-card__action .price { margin: 0 0 var(--space-1); }
+
+.guest-panel {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) auto;
+  gap: var(--space-2);
+  align-items: end;
+  padding: var(--space-3);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+}
+.guest-panel__title { grid-column: 1 / -1; }
+.guest-panel__status { grid-column: 1 / -1; margin: 0; color: var(--color-accent); font-size: 0.9rem; }
+.guest-panel__status:empty { display: none; }
+
 @media (max-width: 980px) {
   .booking-form { grid-template-columns: 1fr 1fr; }
+  .guest-panel { grid-template-columns: 1fr 1fr; }
+  .guest-panel .btn { grid-column: 1 / -1; justify-content: center; }
   .booking-form .btn { grid-column: 1 / -1; justify-content: center; }
 }
 @media (max-width: 768px) {
@@ -58,5 +78,8 @@
 }
 @media (max-width: 520px) {
   .booking-form { grid-template-columns: 1fr; }
+  .guest-panel { grid-template-columns: 1fr; }
+  .result-card { flex-direction: column; align-items: flex-start; }
+  .result-card__action { text-align: left; }
   .booking-form .btn { width: 100%; }
 }

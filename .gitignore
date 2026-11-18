@@ -1,0 +1,7 @@
+# Credenciales de Stays: NUNCA al repositorio
+api/config.php
+casamoraira-config.php
+*.log
+node_modules/
+.DS_Store
+**/.DS_Store
